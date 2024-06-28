@@ -26,7 +26,7 @@ const deck = {
           }
         }
       }
-      return selectedCards
+      return selectedCards;
     }
   };
   
@@ -38,53 +38,51 @@ const deck = {
       switch (hand[i][0]) {
         case 2:
           total += 2;
-          break
+          break;
         case 3:
           total += 3;
-          break
+          break;
         case 4:
           total += 4;
-          break
+          break;
         case 5:
           total += 5;
-          break
+          break;
         case 6:
           total += 6;
-          break
+          break;
         case 7:
           total += 7;
-          break
+          break;
         case 8:
           total += 8;
-          break
+          break;
         case 9:
           total += 9;
-          break
+          break;
         case 10:
           total += 10;
-          break
+          break;
         case 'Jack':
           total += 10;
-          break
+          break;
         case 'Queen':
           total += 10;
-          break
+          break;
         case 'King':
           total +=10;
-          break
+          break;
         case 'Ace':
           if (total > 10) {
             total += 1;
-            break
+            break;
           } else {
             total += 11;
-            break
+            break;
           }
-        default:
-          return console.log('Something has gone wrong!')
       }
     }
-    return total
+    return total;
   }
   
   class role {
@@ -102,20 +100,20 @@ const deck = {
       console.log(this.hand[2]);
       console.log(`${this.name}'s hand: ${this.hand}
   New total: ${this.total}
-  `)
+  `);
       if (this.total > 22) {
-        console.log('BUST')
+        console.log('BUST');
       } else if (this.total === 21) {
-        console.log('BLACKJACK')
+        console.log('BLACKJACK');
       } else {
-        console.log('Hit or Stand?')
+        console.log('Hit or Stand?');
       }
     }
     
     stand() {
     console.log(`${this.name}'s final hand: ${this.hand};
   Final total: ${totalValue(this.hand)}
-  `)
+  `);
     }
     
     //split () {}
