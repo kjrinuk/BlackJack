@@ -1,7 +1,7 @@
 // Blackjack Game
 
 const deck = {
-    rank: [2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King", "Ace"], 
+    rank: [2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"], 
     suit: ["clubs", "diamonds", "hearts", "spades"],
     remaining: [],
     resetDeck() {
@@ -34,53 +34,36 @@ const deck = {
   
   function totalValue(hand) {
     let total = 0;
+    let numOfAces = 0;
+
     for (let i = 0; i < hand.length; i++) {
-      switch (hand[i][0]) {
-        case 2:
-          total += 2;
-          break;
-        case 3:
-          total += 3;
-          break;
-        case 4:
-          total += 4;
-          break;
-        case 5:
-          total += 5;
-          break;
-        case 6:
-          total += 6;
-          break;
-        case 7:
-          total += 7;
-          break;
-        case 8:
-          total += 8;
-          break;
-        case 9:
-          total += 9;
-          break;
-        case 10:
-          total += 10;
-          break;
-        case 'Jack':
-          total += 10;
-          break;
-        case 'Queen':
-          total += 10;
-          break;
-        case 'King':
-          total +=10;
-          break;
-        case 'Ace':
-          if (total > 10) {
-            total += 1;
+      if (hand[i][0] !== 'ace'){
+        switch (hand[i][0]) {
+          case 'jack':
+            total += 10;
             break;
-          } else {
-            total += 11;
+          case 'queen':
+            total += 10;
             break;
-          }
+          case 'king':
+            total +=10;
+            break;  
+          default:
+            total += hand[i][0];
+        }
       }
+    }
+
+    for (let i = 0; i < hand.length; i++) {
+      if (hand[i][0] === 'ace'){
+        numOfAces += 1;
+      }
+    }
+
+    if (numOfAces > 0 && total < 11) {
+      total += (11 + (numOfAces - 1));
+    } else if (numOfAces > 0 && total > 10) {
+      total += numOfAces;
     }
     return total;
   }
@@ -95,9 +78,19 @@ const deck = {
     // Functions below will change depending on how user interacts with browser!
     
     hit() {
-      this.hand.push(deck.selectCardsFromDeck(1)[0]); // Not sure why additional index [0] was needed
+      if (this.total < 21) {
+        this.hand.push(deck.selectCardsFromDeck(1)[0]); // Not sure why additional index [0] was needed
+        this.total = totalValue(this.hand);
+        console.log(this.hand.length - 1);
+        document.getElementById("test-div").innerHTML += `<img src="assets/images/Card-images/SVG-cards/${this.hand[this.hand.length -1][0]}_of_${this.hand[this.hand.length -1][1]}.svg" alt="...">`;
+      } else {
+        console.log("no");
+      }
+      // update total
       this.total = totalValue(this.hand);
-      console.log(this.hand[2]);
+      console.log(this.total);
+
+      /*console.log(this.hand[2]);
       console.log(`${this.name}'s hand: ${this.hand}
   New total: ${this.total}
   `);
@@ -107,14 +100,14 @@ const deck = {
         console.log('BLACKJACK');
       } else {
         console.log('Hit or Stand?');
-      }
+      }*/
     }
     
-    stand() {
+    /*stand() {
     console.log(`${this.name}'s final hand: ${this.hand};
   Final total: ${totalValue(this.hand)}
   `);
-    }
+    }*/
     
     //split () {}
   } 
@@ -127,3 +120,12 @@ const deck = {
   console.log(player);
   console.log(deck.remaining.length);
   console.log(deck.remaining);
+
+  // Show images in browser
+
+  let divElement = document.getElementById("test-div");
+  for (let card of player.hand) {
+    divElement.innerHTML += `<img src="assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg" alt="${card[0]} of ${card[1]}">`
+  }
+
+  console.log(player.total);
