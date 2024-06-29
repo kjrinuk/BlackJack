@@ -88,7 +88,7 @@ const deck = {
           console.log(imgElement);
           imgElement.style = `
           position: absolute;
-          left: ${60*(i+1)}px;
+          left: ${80*(i+1)}px;
           `}
       } else {
         console.log("no");
@@ -142,6 +142,6 @@ const deck = {
     console.log(imgElement);
     imgElement.style = `
     position: absolute;
-    left: ${60*(i+1)}px;
+    left: ${80*(i+1)}px;
     `
   }
