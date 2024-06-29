@@ -82,7 +82,14 @@ const deck = {
         this.hand.push(deck.selectCardsFromDeck(1)[0]); // Not sure why additional index [0] was needed
         this.total = totalValue(this.hand);
         console.log(this.hand.length - 1);
-        document.getElementById("test-div").innerHTML += `<img src="assets/images/Card-images/SVG-cards/${this.hand[this.hand.length -1][0]}_of_${this.hand[this.hand.length -1][1]}.svg" alt="...">`;
+        document.getElementById("test-div").innerHTML += `<img id="player-card-${this.hand.length}" src="assets/images/Card-images/SVG-cards/${this.hand[this.hand.length -1][0]}_of_${this.hand[this.hand.length -1][1]}.svg" alt="...">`;
+        for (let i = 0; i < this.hand.length; i++) {
+          let imgElement = document.getElementById(`player-card-${i+1}`)
+          console.log(imgElement);
+          imgElement.style = `
+          position: absolute;
+          left: ${60*(i+1)}px;
+          `}
       } else {
         console.log("no");
       }
@@ -124,8 +131,17 @@ const deck = {
   // Show images in browser
 
   let divElement = document.getElementById("test-div");
-  for (let card of player.hand) {
-    divElement.innerHTML += `<img src="assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg" alt="${card[0]} of ${card[1]}">`
+  for (let i = 0; i < player.hand.length; i++) {
+    divElement.innerHTML += `<img id="player-card-${i+1}"src="assets/images/Card-images/SVG-cards/${player.hand[i][0]}_of_${player.hand[i][1]}.svg" alt="${player.hand[i][0]} of ${player.hand[i][1]}">`
   }
 
   console.log(player.total);
+
+  for (let i = 0; i < player.hand.length; i++) {
+    let imgElement = document.getElementById(`player-card-${i+1}`)
+    console.log(imgElement);
+    imgElement.style = `
+    position: absolute;
+    left: ${60*(i+1)}px;
+    `
+  }
