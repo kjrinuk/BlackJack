@@ -1,3 +1,22 @@
-body{
-    background-color: green;
+body {
+    background-color: #2e7d32;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
+
+.blackjack-table {
+    background-color: #388e3c;
+    text-align: center;
+}
+
+/* .card {
+    width: 60px;
+    height: 90px;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    font-size: 24px;
+} */
