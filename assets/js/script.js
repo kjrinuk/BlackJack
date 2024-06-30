@@ -219,7 +219,7 @@ function displayChips(money) {
     },
     {
       colour: 'dark-green',
-      value: 20,
+      value: 25,
     },
     {
       colour: 'dark-cyan',
@@ -231,23 +231,26 @@ function displayChips(money) {
     },
   ];
   let chipsDivHTML = ``;
+  money = money - (money % 5) ;
   if ((money % 5) === 0) { // money must be a multiple of 5
     numOfVisibleChips[0] = money / 5;
     numOfVisibleChips[1] = Math.floor(money / 10);
-    numOfVisibleChips[2] = Math.floor(money / 20);
+    numOfVisibleChips[2] = Math.floor(money / 25);
     numOfVisibleChips[3] = Math.floor(money / 50);
     numOfVisibleChips[4] = Math.floor(money / 100);
   };
+  let positionCounter = 0;
   for (let i = 0; i < numOfVisibleChips.length; i++) {
     if (numOfVisibleChips[i] > 3) {
       numOfVisibleChips[i] = 3;
     }
     for(let j = 0; j < numOfVisibleChips[i]; j++) {
-      chipsDivHTML += `<div style= "position: absolute; left = ${10*(i+2)*(j+2)}px;"class="chip ${chips[i].colour} d-flex justify-content-center align-items-center">$${chips[i].value}</div>`;
+      chipsDivHTML += `<div style= "left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-image d-flex justify-content-center align-items-center"></div>`;
+      positionCounter += 1;
     }
   }
   console.log(chipsDivHTML);
-  document.getElementById('bank-box').innerHTML = chipsDivHTML;
+  document.getElementById('bank-box').innerHTML += chipsDivHTML;
 }
 
 displayChips(1000);
