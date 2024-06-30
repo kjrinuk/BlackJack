@@ -1,37 +1,52 @@
 body {
-    background-color: #2e7d32;
-    margin: 0;
-    font-family: Arial, sans-serif;
+  background-color: #2e7d32;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .blackjack-table {
-    background-color: #388e3c;
-    text-align: center;
+  background-color: #388e3c;
+  text-align: center;
 }
+
 /* ReAdded card class with addjustments for font-size
  to make results cards inline with drawn cards*/
 .card {
-    width: 60px;
-    height: 90px;
-    background-color: #fff;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    font-size: 20px;
+  width: 60px;
+  height: 90px;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
 }
+
 .btn {
-    /* Sets button style*/
-    transition: transform 0.3s ease; /* Adds a smooth transition effect */
-  }
-  
-  .btn:hover {
-    transform: translateY(-5px); /* Move the button up by ?*/
-  }
-  
-  .heading {
+  /* Sets button style*/
+  transition: transform 0.3s ease;
+  /* Adds a smooth transition effect */
+}
 
-    text-align: center;
+.btn:hover {
+  transform: translateY(-5px);
+  /* Move the button up by ?*/
+}
 
-  }
+.heading {
+
+  text-align: center;
+  color: #fff;
+  background-color: #388e3c;
+  
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+
+}
