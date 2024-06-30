@@ -20,3 +20,44 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     font-size: 24px;
 } */
+
+#bank-box {
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 80vw;
+    height: 80vh;
+    position: absolute;
+    border-radius: 1%;
+}
+
+#bank-box h2 {
+    color: white;
+    padding: 1rem; 
+}
+
+.chip {
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    font-size: 250%;
+    border: 2px solid goldenrod; 
+}
+
+.white {
+    background-color: white;
+}
+
+.red {
+    background-color: red;
+}
+
+.dark-green {
+    background-color: darkgreen;
+}
+
+.dark-cyan {
+    background-color: darkcyan;
+}
+
+.black {
+    background-color: black;
+}

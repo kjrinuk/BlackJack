@@ -205,3 +205,49 @@ document.getElementById('stand-button').addEventListener('click', () => {
 });
 
 updateUI();
+
+function displayChips(money) {
+  let numOfVisibleChips = [0, 0, 0, 0, 0];
+  let chips = [
+    {
+      colour: 'white',
+      value: 5,
+    },
+    {
+      colour: 'red',
+      value: 10,
+    },
+    {
+      colour: 'dark-green',
+      value: 20,
+    },
+    {
+      colour: 'dark-cyan',
+      value: 50,
+    },
+    {
+      colour: 'black',
+      value: 100,
+    },
+  ];
+  let chipsDivHTML = ``;
+  if ((money % 5) === 0) { // money must be a multiple of 5
+    numOfVisibleChips[0] = money / 5;
+    numOfVisibleChips[1] = Math.floor(money / 10);
+    numOfVisibleChips[2] = Math.floor(money / 20);
+    numOfVisibleChips[3] = Math.floor(money / 50);
+    numOfVisibleChips[4] = Math.floor(money / 100);
+  };
+  for (let i = 0; i < numOfVisibleChips.length; i++) {
+    if (numOfVisibleChips[i] > 3) {
+      numOfVisibleChips[i] = 3;
+    }
+    for(let j = 0; j < numOfVisibleChips[i]; j++) {
+      chipsDivHTML += `<div style= "position: absolute; left = ${10*(i+2)*(j+2)}px;"class="chip ${chips[i].colour} d-flex justify-content-center align-items-center">$${chips[i].value}</div>`;
+    }
+  }
+  console.log(chipsDivHTML);
+  document.getElementById('bank-box').innerHTML = chipsDivHTML;
+}
+
+displayChips(1000);
