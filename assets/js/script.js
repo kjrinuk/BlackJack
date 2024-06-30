@@ -224,7 +224,7 @@ function displayChips(money) {
       numOfVisibleChips[i] = 3;
     }
     for(let j = 0; j < numOfVisibleChips[i]; j++) {
-      chipsDivHTML += `<div style= "left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-${chips[i]} d-flex justify-content-center align-items-center"></div>`;
+      chipsDivHTML += `<div style= "left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-${chips[i]}"></div>`;
       positionCounter += 1;
     }
   }
