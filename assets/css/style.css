@@ -34,17 +34,33 @@ body {
     padding: 1rem; 
 }
 
-.chip {
-    width: 10vw;
-    height: 10vw;
-    position: absolute; 
-    top: 5rem;
+#bank-box>div {
+    height: 20vh;
+    position: relative;
 }
 
-.chip-image {
-    background: url('../images/Chips/chip-50.png') no-repeat center / cover;
+.chip {
     width: 10vw;
-    height: 10vh;
-    background-size: 50%;
+    height: 20vh;
+    position: absolute; 
+}
 
+.chip-5 {
+    background: url('../images/Chips/chip-5.png') no-repeat center / cover;
+}
+
+.chip-10 {
+    background: url('../images/Chips/chip-10.png') no-repeat center / cover;
+}
+
+.chip-25 {
+    background: url('../images/Chips/chip-25.png') no-repeat center / cover;
+}
+
+.chip-50 {
+    background: url('../images/Chips/chip-50.png') no-repeat center / cover;
+}
+
+.chip-100 {
+    background: url('../images/Chips/chip-100.png') no-repeat center / cover;
 }

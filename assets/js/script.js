@@ -208,28 +208,7 @@ updateUI();
 
 function displayChips(money) {
   let numOfVisibleChips = [0, 0, 0, 0, 0];
-  let chips = [
-    {
-      colour: 'white',
-      value: 5,
-    },
-    {
-      colour: 'red',
-      value: 10,
-    },
-    {
-      colour: 'dark-green',
-      value: 25,
-    },
-    {
-      colour: 'dark-cyan',
-      value: 50,
-    },
-    {
-      colour: 'black',
-      value: 100,
-    },
-  ];
+  let chips = [5, 10, 25, 50, 100];
   let chipsDivHTML = ``;
   money = money - (money % 5) ;
   if ((money % 5) === 0) { // money must be a multiple of 5
@@ -245,12 +224,13 @@ function displayChips(money) {
       numOfVisibleChips[i] = 3;
     }
     for(let j = 0; j < numOfVisibleChips[i]; j++) {
-      chipsDivHTML += `<div style= "left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-image d-flex justify-content-center align-items-center"></div>`;
+      chipsDivHTML += `<div style= "left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-${chips[i]} d-flex justify-content-center align-items-center"></div>`;
       positionCounter += 1;
     }
   }
   console.log(chipsDivHTML);
-  document.getElementById('bank-box').innerHTML += chipsDivHTML;
+  return chipsDivHTML;
 }
 
-displayChips(1000);
+document.getElementById('available-chips').innerHTML += displayChips(1000);
+document.getElementById('betting-chips').innerHTML += displayChips(10);
