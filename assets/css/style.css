@@ -21,4 +21,12 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     font-size: 20px;
 }
-
+.btn {
+    /* Sets button style*/
+    transition: transform 0.3s ease; /* Adds a smooth transition effect */
+  }
+  
+  .btn:hover {
+    transform: translateY(-5px); /* Move the button up by ?*/
+  }
+  
