@@ -1,4 +1,34 @@
 // Blackjack Game
+/**
+ * 1. Create a deck of cards
+ * 2. Shuffle the deck
+ * 3. Ask the player to "hit" or "stand"
+ * 4. If the player "hits", add a card to the player's hand
+ * 5. If the player "stands", stop the game, allow dealers turn
+ * 6. If the player's hand is over 21, the player loses
+ * 7. If the player's hand is less than or equal to 21, the dealer must draw cards until their hand is greater than the player's
+ * 8. If the dealer's hand is over 21, the player wins
+ * 9. If the dealer's hand is greater than the player's, the dealer wins
+ * 10. If the dealer's hand is less than the player's, the player wins
+ * 11. If the dealer's hand is equal to the player's, the dealer wins
+ * 12. The player's score is displayed
+ * 13. The dealer's score is displayed
+ * 14. The player's score is updated
+ * 15. The dealer's score is updated
+ * 16. The player's hand is displayed
+ * 17. The dealer's hand is displayed
+ * 18. The player's hand is updated
+ * 19. The dealer's hand is updated
+ * 20. The player's hand is evaluated
+ * 21. The dealer's hand is evaluated
+ * 22. The winner is determined
+ * 23. The game is reset
+ * 24. The game is started
+ * 25. The game is stopped
+ * 26. The game is continued
+ * 27. The game is paused?
+ * 28. The game is saved?
+ */
 
 // Defining or instantiating Card-Deck
 const deck = {
