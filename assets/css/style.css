@@ -30,3 +30,8 @@ body {
     transform: translateY(-5px); /* Move the button up by ?*/
   }
   
+  .heading {
+
+    text-align: center;
+
+  }
