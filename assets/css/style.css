@@ -8,8 +8,9 @@ body {
     background-color: #388e3c;
     text-align: center;
 }
-
-/* .card {
+/* ReAdded card class with addjustments for font-size
+ to make results cards inline with drawn cards*/
+.card {
     width: 60px;
     height: 90px;
     background-color: #fff;
@@ -18,5 +19,6 @@ body {
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    font-size: 24px;
-} */
+    font-size: 20px;
+}
+

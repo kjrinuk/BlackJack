@@ -1,5 +1,6 @@
 // Blackjack Game
 
+// Defining or instantiating Card-Deck
 const deck = {
   rank: [2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"], 
   suit: ["clubs", "diamonds", "hearts", "spades"],
@@ -93,7 +94,7 @@ function updateScore(winner) {
     document.getElementById('dealer-score').textContent = dealerScore;
   }
 }
-
+// Drawn Cards defined and styled here
 function updateUI() {
   const dealerCards = document.getElementById('dealer-cards');
   const playerCards = document.getElementById('player-cards');
@@ -141,9 +142,11 @@ function determineWinner() {
     result = 'LOSS'; // Dealer wins in case of a tie
     updateScore('dealer');
   } else {
-    console.log('Something has gone wrong!');
+    console.log('Something has gone wrong!'); //internal bug checking we should oped this out to a modal in the deployment.
   }
-
+// Result card creation styles defined in style sheet atm 
+// maybe create background images for result cards? BUSTed, Player Wins, Dealer Wins, Dealer Loses and Player Loses cards
+// rewrite code here maybe to fix cloneNode BUST bug
   const resultCard = document.createElement('div');
   resultCard.className = 'card';
   resultCard.textContent = result;
@@ -169,7 +172,7 @@ function determineWinner() {
 
   gameStarted = false;
 }
-
+// Buttons for game play, maybe add functionality for a Split button if both cards in first draw are equal to eachother.
 document.getElementById('deal-button').addEventListener('click', () => {
   if (!gameStarted) {
     deck.resetDeck();
@@ -192,7 +195,7 @@ document.getElementById('hit-button').addEventListener('click', () => {
     }
   }
 });
-
+// Think we could add rule here for dealer to stop hitting if his score >= players instead of hitting while less than 17
 document.getElementById('stand-button').addEventListener('click', () => {
   if (gameStarted && playerTurn) {
     playerTurn = false;
