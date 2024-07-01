@@ -147,6 +147,9 @@ function updateUI() {
     dealerCards.appendChild(cardDiv);
   });
 
+  //Override styling to hide dealer's first card
+  document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/back-card.jpg') no-repeat center / cover`;
+  
   if (dealer.hand.length > 0) dealerCards.innerHTML += `<div id="spacer"></div>`; // Required to provide sufficient space to display cardDiv with absolute positioning
 
   for (let i = 1; i <= dealer.hand.length; i++) {
@@ -196,6 +199,10 @@ function determineWinner() {
   } else {
     console.log('Something has gone wrong!'); //internal bug checking we should oped this out to a modal in the deployment.
   }
+
+  // Reveal dealer's hidden card once result has been assigned a value
+  document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/SVG-cards/${dealer.hand[0][0]}_of_${dealer.hand[0][1]}.svg') no-repeat center / cover`;
+
 // Result card creation styles defined in style sheet atm 
 // maybe create background images for result cards? BUSTed, Player Wins, Dealer Wins, Dealer Loses and Player Loses cards
 // rewrite code here maybe to fix cloneNode BUST bug
