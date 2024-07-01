@@ -242,12 +242,15 @@ document.getElementById('stand-button').addEventListener('click', () => {
   if (gameStarted && playerTurn) {
     playerTurn = false;
     
-    // reveal dealer card value
-    document.getElementById("dealer-cards-value").style.display = "block";
-    
+   
     while (dealer.total < 17) {
       dealer.addCard(deck.selectCardsFromDeck(1)[0]);
     }
+    
+     // update and reveal dealer card value
+     document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+     document.getElementById("dealer-cards-value").style.display = "block";
+     
     updateUI();
     determineWinner();
   }
