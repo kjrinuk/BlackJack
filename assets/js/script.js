@@ -26,8 +26,7 @@
  * 24. The game is started
  * 25. The game is stopped
  * 26. The game is continued
- * 27. The game is paused?
- * 28. The game is saved?
+ * 
  */
 
 // Defining or instantiating Card-Deck
@@ -236,4 +235,32 @@ document.getElementById('stand-button').addEventListener('click', () => {
   }
 });
 
-updateUI();
+// updateUI();
+// function displayChips(money) {
+//   let numOfVisibleChips = [0, 0, 0, 0, 0];
+//   let chips = [5, 10, 25, 50, 100];
+//   let chipsDivHTML = ``;
+//   money = money - (money % 5) ;
+//   if ((money % 5) === 0) { // money must be a multiple of 5
+//     numOfVisibleChips[0] = money / 5;
+//     numOfVisibleChips[1] = Math.floor(money / 10);
+//     numOfVisibleChips[2] = Math.floor(money / 25);
+//     numOfVisibleChips[3] = Math.floor(money / 50);
+//     numOfVisibleChips[4] = Math.floor(money / 100);
+//   };
+//   let positionCounter = 0;
+//   for (let i = 0; i < numOfVisibleChips.length; i++) {
+//     if (numOfVisibleChips[i] > 3) {
+//       numOfVisibleChips[i] = 3;
+//     }
+//     for(let j = 0; j < numOfVisibleChips[i]; j++) {
+//       chipsDivHTML += `<div style= "left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-${chips[i]} d-flex justify-content-center align-items-center"></div>`;
+//       positionCounter += 1;
+//     }
+//   }
+//   console.log(chipsDivHTML);
+//   return chipsDivHTML;
+// }
+
+// document.getElementById('available-chips').innerHTML += displayChips(1000);
+// document.getElementById('betting-chips').innerHTML += displayChips(10);
