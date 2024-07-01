@@ -1,13 +1,20 @@
 body {
   background-color: #2e7d32;
+  /* background-image: url("../images/backgrounds/poker-table-cards-chips-vector-600.webp");
+  background-size: cover;
+  background-position: 
+  background-attachment: fixed;
+  background-repeat: no-repeat; */
   margin: 0;
   font-family: Arial, sans-serif;
 }
-#mainBackground {
-  background-image: src="./assets/imames/backgrounds/istockphoto-chipsOnTable.jpg";
+/* #mainBackground {
+  background-image: url("../images/backgrounds/poker-table-cards-chips-vector-600.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   margin: 0;
-  font-family: Arial, sans-serif;
-}
+} */
 .relative {
   position: relative; 
 }
