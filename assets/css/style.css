@@ -118,21 +118,26 @@ body {
 }
 
 .chip-5 {
-    background: url('../images/Chips/chip-5.png') no-repeat center / cover;
+    background: url('../images/poker_chips/chip_white_top_large.png') no-repeat center / cover;
+    background-size: 80%;
 }
 
 .chip-10 {
-    background: url('../images/Chips/chip-10.png') no-repeat center / cover;
+    background: url('../images/poker_chips/chip_red_top_large.png') no-repeat center / cover;
+    background-size: 80%;
 }
 
 .chip-25 {
-    background: url('../images/Chips/chip-25.png') no-repeat center / cover;
+    background: url('../images/poker_chips/chip_green_top_large.png') no-repeat center / cover;
+    background-size: 80%;
 }
 
 .chip-50 {
-    background: url('../images/Chips/chip-50.png') no-repeat center / cover;
+    background: url('../images/poker_chips/chip_blue_top_large.png') no-repeat center / cover;
+    background-size: 80%;
 }
 
 .chip-100 {
-    background: url('../images/Chips/chip-100.png') no-repeat center / cover;
+    background: url('../images/poker_chips/chip_black_top_large.png') no-repeat center / cover;
+    background-size: 80%;
 }

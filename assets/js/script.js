@@ -148,7 +148,9 @@ function updateUI() {
   });
 
   //Override styling to hide dealer's first card
-  document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/back-card.jpg') no-repeat center / cover`;
+  while (!dealer.hand.length === 0) {
+    document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/back-card.jpg') no-repeat center / cover`;
+  }
   
   if (dealer.hand.length > 0) dealerCards.innerHTML += `<div id="spacer"></div>`; // Required to provide sufficient space to display cardDiv with absolute positioning
 
@@ -294,6 +296,7 @@ document.getElementById('stand-button').addEventListener('click', () => {
 
 updateUI();
 
+// Bank & Chips Functionality 
 function displayChips(money) {
   let numOfVisibleChips = [0, 0, 0, 0, 0];
   let chips = [5, 10, 25, 50, 100];
@@ -312,7 +315,7 @@ function displayChips(money) {
       numOfVisibleChips[i] = 3;
     }
     for(let j = 0; j < numOfVisibleChips[i]; j++) {
-      chipsDivHTML += `<div style= "left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-${chips[i]}"></div>`;
+      chipsDivHTML += `<div style= "display: flex; justify-content: center; align-items: center; left: ${(0.5*positionCounter) + (10 * i)}vw;" class="chip chip-${chips[i]}">$${chips[i]}</div>`;
       positionCounter += 1;
     }
   }
@@ -320,5 +323,5 @@ function displayChips(money) {
   return chipsDivHTML;
 }
 
-document.getElementById('available-chips').innerHTML += displayChips(1000);
+document.getElementById('available-chips').innerHTML += displayChips(100);
 document.getElementById('betting-chips').innerHTML += displayChips(10);
