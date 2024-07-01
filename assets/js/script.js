@@ -215,8 +215,10 @@ document.getElementById('deal-button').addEventListener('click', () => {
     playerTurn = true;
     
     // turn display of player card values to on
-    // dealer value is still hidden until player has finished his go
+    document.getElementById("player-cards-value").innerHTML = player.total.toString();
     document.getElementById("player-cards-value").style.display = "block";
+        
+    // ensure dealer value is still hidden until player has finished his go
     document.getElementById("dealer-cards-value").style.display = "none";
   }
 
@@ -225,6 +227,10 @@ document.getElementById('deal-button').addEventListener('click', () => {
 document.getElementById('hit-button').addEventListener('click', () => {
   if (gameStarted && playerTurn) {
     player.addCard(deck.selectCardsFromDeck(1)[0]);
+    
+    // update player cards value
+    document.getElementById("player-cards-value").innerHTML = player.total.toString();
+    
     updateUI();
     if (player.total > 21) {
       determineWinner();
