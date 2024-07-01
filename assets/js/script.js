@@ -213,7 +213,13 @@ document.getElementById('deal-button').addEventListener('click', () => {
     updateUI();
     gameStarted = true;
     playerTurn = true;
+    
+    // turn display of player card values to on
+    // dealer value is still hidden until player has finished his go
+    document.getElementById("player-cards-value").style.display = "block";
+    document.getElementById("dealer-cards-value").style.display = "none";
   }
+
 });
 
 document.getElementById('hit-button').addEventListener('click', () => {
@@ -229,6 +235,10 @@ document.getElementById('hit-button').addEventListener('click', () => {
 document.getElementById('stand-button').addEventListener('click', () => {
   if (gameStarted && playerTurn) {
     playerTurn = false;
+    
+    // reveal dealer card value
+    document.getElementById("dealer-cards-value").style.display = "block";
+    
     while (dealer.total < 17) {
       dealer.addCard(deck.selectCardsFromDeck(1)[0]);
     }

@@ -50,3 +50,25 @@ body {
   font-size: 20px;
 
 }
+
+
+/* Add styling for card values */
+/* needs to be hidden until cards are dealt */
+#player-cards-value, #dealer-cards-value {
+  background-color: brown;
+  border-radius: 25%;
+  
+  width: 40px;
+  height: 30px;
+  position: relative;
+  inset: 1px 1px 2px 10px;
+  margin: 7px;
+  padding-top: 3px;
+  /* hide card value */
+  display: none;
+}
+
+/* #dealer-cards-value {
+  background-color: brown;
+  display: none;
+} */
