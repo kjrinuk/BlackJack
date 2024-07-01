@@ -197,6 +197,13 @@ function determineWinner() {
     document.getElementById('dealer-cards').appendChild(dealerResultCard);
   } else {
     document.getElementById('player-cards').appendChild(resultCard);
+    
+    // update and reveal dealer card value
+    document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+    document.getElementById("dealer-cards-value").style.display = "block";
+    
+    // document.getElementById('dealer-cards').appendChild(resultCard);
+
     document.getElementById('dealer-cards').appendChild(resultCard.cloneNode(true));
   }
 
