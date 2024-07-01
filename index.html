@@ -14,8 +14,42 @@
 </head>
 
 <body>
+    <header>
+        <div class="container-fluid d-flex justify-content-center align-items-center">
+            <div class="row mb-12">
+                <div class="col-md-12 heading gap-5 mt-2"><img src="./assets/images/Black_Jack_Banner.png"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Add a container-fluid class to the div bootstrap created with ChatGTP for inspiration-->
+    <div class="container-fluid svh-100 d-flex justify-content-center align-items-center">
+        <div class="blackjack-table p-4 rounded-3 shadow">
+            <div class="row mb-4">
+                <div class="col text-center">
+                    <h2 class="text-white">Dealer's Cards</h2>
+                    <div id="dealer-cards" class="card-container d-flex justify-content-center gap-2"></div>
+                    <div class="text-white">Score: <span id="dealer-score">0</span></div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col text-center">
+                    <h2 class="text-white">Player's Cards</h2>
+                    <div id="player-cards" class="card-container d-flex justify-content-center gap-2"></div>
+                    <div class="text-white">Score: <span id="player-score">0</span></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <button id="deal-button" class="btn btn-primary mb-2">Deal</button>
+                    <button id="hit-button" class="btn btn-secondary mb-2">Hit</button>
+                    <button id="stand-button" class="btn btn-secondary mb-2">Stand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
 
-
+    </footer>
 <!-- Add script link for 5.3 bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
