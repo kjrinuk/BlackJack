@@ -141,7 +141,7 @@ function updateUI() {
     height: 90px;
     position: absolute;
     `;
-    idIterator += 1;
+    idIterator += 1; 
     
     dealerCards.appendChild(cardDiv);
   });
