@@ -131,29 +131,51 @@ function updateUI() {
   dealerCards.innerHTML = '';
   playerCards.innerHTML = '';
   
+  let idIterator = 1; 
   dealer.hand.forEach(card => {
     const cardDiv = document.createElement('div');
-    // cardDiv.className = 'card';
-    // cardDiv.textContent = card[0];
+    cardDiv.className = 'card-image';
+    cardDiv.id = `dealer-card-${idIterator}`;
     cardDiv.style = `
     background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
     width: 60px;
     height: 90px;
-    `
+    position: absolute;
+    `;
+    idIterator += 1;
+    
     dealerCards.appendChild(cardDiv);
   });
 
+  if (dealer.hand.length > 0) dealerCards.innerHTML += `<div id="spacer"></div>`; // Required to provide sufficient space to display cardDiv with absolute positioning
+
+  for (let i = 1; i <= dealer.hand.length; i++) {
+    document.getElementById(`dealer-card-${i}`).style.left = `${15+(8*i)}%`;
+    document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
+  }
+
+  idIterator = 1; 
   player.hand.forEach(card => {
     const cardDiv = document.createElement('div');
-    // cardDiv.className = 'card';
-    // cardDiv.textContent = card[0];
+    cardDiv.className = 'card-image';
+    cardDiv.id = `player-card-${idIterator}`;
     cardDiv.style = `
     background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
     width: 60px;
     height: 90px;
-    `
+    position: absolute; 
+    `;
+    idIterator += 1;
+
     playerCards.appendChild(cardDiv);
   });
+
+  if (player.hand.length > 0) playerCards.innerHTML += `<div id="spacer"></div>`;
+
+  for (let i = 1; i <= player.hand.length; i++) {
+    document.getElementById(`player-card-${i}`).style.left = `${15+(8*i)}%`;
+    document.getElementById(`player-card-${i}`).style.transform = `rotate(-${player.hand.length*(player.hand.length - i)}deg)`;
+  }
 }
 
 // changed code to determine winner with house always having advantage in tie situations

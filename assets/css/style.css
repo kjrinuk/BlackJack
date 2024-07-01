@@ -4,6 +4,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.relative {
+  position: relative; 
+}
+
 .blackjack-table {
   background-color: #388e3c;
   text-align: center;
@@ -21,6 +25,21 @@ body {
   align-items: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   font-size: 20px;
+  position: absolute; 
+  left: 100%;
+}
+
+/* Below styling is similar to above but keeping separate for now */
+.card-image {
+  width: 60px;
+  height: 90px;
+  border: 0.01rem solid black;
+  border-radius: 0.3rem;
+}
+
+#spacer {
+  width: 60px;
+  height: 90px;
 }
 
 .btn {
