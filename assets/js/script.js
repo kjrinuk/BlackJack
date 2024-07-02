@@ -171,6 +171,7 @@ function updateUI() {
 //  Player Cards defined and styled here --------------------------------------------------Split button display
   if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]){
     document.getElementById('split-button').style.display = 'inline-block';
+    
   } else{
     document.getElementById('split-button').style.display = 'none';
   }
@@ -396,8 +397,7 @@ document.getElementById('stand-button').addEventListener('click', () => {
   document.getElementById('split-button').addEventListener('click', () => {
     if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
       
-      splitCards();
+      updateUI(); // update UI to show split cards
+    });
 
-    }
-  });
 updateUI();
