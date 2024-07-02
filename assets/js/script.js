@@ -99,7 +99,7 @@ function totalValue(hand) {
     }
   }
   while (total > 21 && aces) {
-    total -= 10; // ---------------------------------------un-ness
+    total -= 10; // Change value of ace from 11 to 1 if total is over 21
     aces -= 1;
   }
   return total;
