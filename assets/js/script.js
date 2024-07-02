@@ -206,15 +206,22 @@ function determineWinner() {
   resultCard.className = 'card';
   resultCard.textContent = result;
 
-  if (result === 'WIN' || result === 'LOSS') {
+  if (result !== undefined) {
     const playerResultCard = resultCard.cloneNode(true);
     const dealerResultCard = resultCard.cloneNode(true);
 
     if (result === 'WIN') {
       playerResultCard.textContent = 'WIN';
+      if (dealer.total > 21) {
+        dealerResultCard.textContent = 'BUST';
+      } else {
       dealerResultCard.textContent = 'LOSS';
-    } else {
+      }
+    } else if (result === 'LOSS') {
       playerResultCard.textContent = 'LOSS';
+      dealerResultCard.textContent = 'WIN';
+    } else if (result === 'BUST') {
+      playerResultCard.textContent = 'BUST';
       dealerResultCard.textContent = 'WIN';
     }
 
