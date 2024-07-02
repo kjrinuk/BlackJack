@@ -1,6 +1,6 @@
 // Blackjack Game
 // On window load timer
-window.onload = function() {
+window.onload = function () {
   let secondsSpent = 0;
   const display = document.getElementById('timeSpent');
 
@@ -9,7 +9,7 @@ window.onload = function() {
     let minutes = Math.floor(secondsSpent / 60);
     let seconds = secondsSpent % 60;
     display.textContent = `Play Timer: ${minutes}:${seconds}`;
-      }, 1000);
+  }, 1000);
 };
 
 /**
@@ -168,11 +168,11 @@ function updateUI() {
     document.getElementById(`dealer-card-${i}`).style.left = `${15+(8*i)}%`;
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
-//  Player Cards defined and styled here --------------------------------------------------Split button display
-  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]){
+  //  Player Cards defined and styled here --------------------------------------------------Split button display
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
     document.getElementById('split-button').style.display = 'inline-block';
-    
-  } else{
+
+  } else {
     document.getElementById('split-button').style.display = 'none';
   }
   idIterator = 1;
@@ -394,10 +394,10 @@ document.getElementById('stand-button').addEventListener('click', () => {
 
 // split button functionality
 
-  document.getElementById('split-button').addEventListener('click', () => {
-    if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-      
-      updateUI(); // update UI to show split cards
-    });
+document.getElementById('split-button').addEventListener('click', () => {
+      if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
 
-updateUI();
+        updateUI(); // update UI to show split cards
+      }});
+
+    updateUI();
