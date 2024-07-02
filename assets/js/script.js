@@ -147,9 +147,10 @@ function updateUI() {
     cardDiv.id = `dealer-card-${idIterator}`;
     cardDiv.style = `
     background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
-    width: 60px;
-    height: 90px;
+    width: 80px;
+    height: 120px;
     position: absolute;
+    bottom: 10%;
     `;
     idIterator += 1;
 
@@ -162,8 +163,10 @@ function updateUI() {
   if (dealer.hand.length > 0) dealerCards.innerHTML += `<div id="spacer"></div>`; // Required to provide sufficient space to display cardDiv with absolute positioning
 
   for (let i = 1; i <= dealer.hand.length; i++) {
-    document.getElementById(`dealer-card-${i}`).style.left = `${15+(8*i)}%`;
-    document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
+    document.getElementById(`dealer-card-${i}`).style.left += `${15+(8*i)}%`;
+    document.getElementById(`dealer-card-${i}`).style.transform += `rotate(-${5*(dealer.hand.length - i)}deg)`;
+    document.getElementById(`dealer-card-${i}`).style.animation = `dealingCardsDealer`;
+    document.getElementById(`dealer-card-${i}`).style.animationDuration = `2s`;
   }
 
   idIterator = 1;
@@ -173,9 +176,9 @@ function updateUI() {
     cardDiv.id = `player-card-${idIterator}`;
     cardDiv.style = `
     background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
-    width: 60px;
-    height: 90px;
-    position: absolute; 
+    width: 80px;
+    height: 120px;
+    position: absolute;
     `;
     idIterator += 1;
 
@@ -185,9 +188,12 @@ function updateUI() {
   if (player.hand.length > 0) playerCards.innerHTML += `<div id="spacer"></div>`;
 
   for (let i = 1; i <= player.hand.length; i++) {
-    document.getElementById(`player-card-${i}`).style.left = `${15+(8*i)}%`;
-    document.getElementById(`player-card-${i}`).style.transform = `rotate(-${player.hand.length*(player.hand.length - i)}deg)`;
+    document.getElementById(`player-card-${i}`).style.left += `${15+(8*i)}%`;
+    document.getElementById(`player-card-${i}`).style.transform += `rotate(-${player.hand.length*(player.hand.length - i)}deg)`;
+    document.getElementById(`player-card-${i}`).style.animation = `dealingCardsPlayer`;
+    document.getElementById(`player-card-${i}`).style.animationDuration = `2s`;
   }
+
 }
 
 // changed code to determine winner with house always having advantage in tie situations

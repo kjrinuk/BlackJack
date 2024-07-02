@@ -19,6 +19,69 @@ body{
   height: 35vw;
 }
 
+#blackjack-section {
+  width: 100vw;
+}
+
+.bk-crd-decorative {
+  width: 80px;
+  height: 120px;
+  position: absolute;
+  left: (2*20)vw;
+  top: -15%;
+  border-radius: 5%;
+  border: 1px solid black; 
+  z-index: 99;
+}
+
+#bk-crd-1 {
+  transform: rotate(-20deg);
+  z-index:6;
+}
+
+#bk-crd-2 {
+  transform: rotate(-10deg);
+  z-index:5;
+}
+
+#bk-crd-3 {
+  transform: rotate(0);
+  z-index:4;
+}
+
+#bk-crd-4 {
+  transform: rotate(10deg);
+  z-index:3;
+}
+
+#bk-crd-5 {
+  transform: rotate(20deg);
+  z-index:2;
+}
+
+@keyframes dealingCardsDealer {
+  from {bottom: 500%;}
+  to {bottom: 10%};
+}
+
+@keyframes dealingCardsPlayer {
+  from {top: 300%;}
+  to {top: 0};
+}
+
+#dealer-cards{
+  height: 25vh;
+}
+
+#player-cards{
+  height: 25vh;
+}
+
+.blackjack-table {
+  position: absolute;
+  top: 10vh;
+}
+
 #background-blackjack-table {
   background: url('../images/blackjack-tabletop-mobile.svg') no-repeat center / cover;
   background-size: 110%;
@@ -26,6 +89,7 @@ body{
   bottom: 0%;
   width: 100vw;
   height: 40vh;
+  z-index: -1;
 }
 
 #blackjack-tabletop {
