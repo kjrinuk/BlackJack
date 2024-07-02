@@ -1,16 +1,33 @@
-body {
-  background-color: #2e7d32;
+body{
+  height: 100vh;
   margin: 0;
+  background-color: green;
   font-family: Arial, sans-serif;
 }
+
 
 .relative {
   position: relative; 
 }
 
-.blackjack-table {
-  background-color: #388e3c;
+#blackjack_banner {
+  background: url('../images/Black_Jack_Banner.png') no-repeat center / cover;
+  width: 100vw;
+  height: 35vw;
+}
+
+#blackjack-table {
+  background: url('../images/blackjack-tabletop.png') no-repeat center;
+  background-size: 300%;
+  width: 100 vw;
   text-align: center;
+  height: 500px; 
+}
+
+#blackjack-tabletop {
+  background: url('../images/BLACKjack-tabletop.jpg') no-repeat center / cover;
+  width: 60vw;
+  height: 30vw;
 }
 
 /* ReAdded card class with addjustments for font-size
@@ -26,7 +43,7 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   font-size: 20px;
   position: absolute; 
-  left: 100%;
+  left: 80%;
 }
 
 /* Below styling is similar to above but keeping separate for now */
@@ -59,14 +76,15 @@ body {
   color: #fff;
   background-color: #388e3c;
   
-  padding: 10px;
+  padding-left: 5px;
+  padding-top: 0;
+  padding-right: 0;
   margin: 5px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  font-size: 20px;
 
 }
 
@@ -140,4 +158,35 @@ body {
 .chip-100 {
     background: url('../images/poker_chips/chip_black_top_large.png') no-repeat center / cover;
     background-size: 80%;
+}
+/* Media query for medium screen sizes (>= 768px) */
+@media screen and (min-width: 768px) {
+  /* Header */
+  /* Banner */
+  #blackjack_banner {
+    width: 50vw;
+    height: 15vw;
+  }
+
+  /* section */
+  #blackjack-table {
+    background-size : 150%;
+    height: 550px
+  }
+}
+
+/* Media query for large screen sizes (>= 992px) */
+@media screen and (min-width: 992px) {
+  /* Header */
+  /* Banner */
+  #blackjack_banner {
+    width: 30vw;
+    height: 10vw;
+  }
+
+  /* section */
+  #blackjack-table {
+    background-size : 85%;
+    height: 550px
+  }
 }
