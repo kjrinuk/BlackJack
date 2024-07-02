@@ -1,20 +1,17 @@
-body {
-  background-color: #2e7d32;
-  /* background-image: url("../images/backgrounds/poker-table-cards-chips-vector-600.webp");
-  background-size: cover;
-  background-position: 
-  background-attachment: fixed;
-  background-repeat: no-repeat; */
+body{
+  height: 100vh;
   margin: 0;
+  background-image: url(/assets/images/BLACKjack-table-edit.png);
+  background-size: cover;
+  background-position: center; 
+  /* background-color: rgba(56, 142, 60, 0.5);  */
+  /* background-attachment: fixed; */
+
+  margin: 0; 
   font-family: Arial, sans-serif;
 }
-/* #mainBackground {
-  background-image: url("../images/backgrounds/poker-table-cards-chips-vector-600.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin: 0;
-} */
+
+
 .relative {
   position: relative; 
 }
@@ -37,7 +34,7 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   font-size: 20px;
   position: absolute; 
-  left: 100%;
+  left: 80%;
 }
 
 /* Below styling is similar to above but keeping separate for now */
@@ -82,6 +79,19 @@ body {
 
 }
 
-.heading img {
- aspect-ratio: 16/5;
+
+/* Add styling for card values */
+/* needs to be hidden until cards are dealt */
+#player-cards-value, #dealer-cards-value {
+  background-color: brown;
+  border-radius: 25%;
+  
+  width: 40px;
+  height: 30px;
+  position: relative;
+  inset: 1px 1px 2px 10px;
+  margin: 7px;
+  padding-top: 3px;
+  /* hide card value */
+  display: none;
 }
