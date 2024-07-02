@@ -26,8 +26,7 @@
  * 24. The game is started
  * 25. The game is stopped
  * 26. The game is continued
- * 27. The game is paused?
- * 28. The game is saved?
+ * 
  */
 
 // Defining or instantiating Card-Deck
@@ -79,15 +78,15 @@ function totalValue(hand) {
         total += 10;
         break;
       case 'ace':
-        aces += 1;
-        total += 11;
+        aces += 1; // total += 1 (if less than 10) || 11 (if more than 10)
+        total += 11; //
         break;
       default:
         console.log('Something has gone wrong!');
     }
   }
   while (total > 21 && aces) {
-    total -= 10;
+    total -= 10; // ---------------------------------------un-ness
     aces -= 1;
   }
   return total;
@@ -115,7 +114,7 @@ let playerTurn = true;
 let playerScore = 0;
 let dealerScore = 0;
 
-function updateScore(winner) {
+function updateScore(winner) { 
   if (winner === 'player') {
     playerScore += 1;
     document.getElementById('player-score').textContent = playerScore;
@@ -190,11 +189,8 @@ function determineWinner() {
   } else if (dealer.total > 21 || player.total > dealer.total) {
     result = 'WIN';
     updateScore('player');
-  } else if (player.total < dealer.total) {
+  } else if (player.total <= dealer.total) {
     result = 'LOSS';
-    updateScore('dealer');
-  } else if (player.total === dealer.total) {
-    result = 'LOSS'; // Dealer wins in case of a tie
     updateScore('dealer');
   } else {
     console.log('Something has gone wrong!'); //internal bug checking we should oped this out to a modal in the deployment.
