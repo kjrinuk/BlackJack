@@ -1,13 +1,7 @@
 body{
   height: 100vh;
   margin: 0;
-  background-image: url(/assets/images/backgrounds/poker-table-cards-chips-vector-600.webp);
-  background-size: cover;
-  background-position: center; 
-  /* background-color: rgba(56, 142, 60, 0.5);  */
-  /* background-attachment: fixed; */
-
-  margin: 0; 
+  background-color: green;
   font-family: Arial, sans-serif;
 }
 
@@ -16,9 +10,24 @@ body{
   position: relative; 
 }
 
-.blackjack-table {
-  background-color: #388e3c;
+#blackjack_banner {
+  background: url('../images/Black_Jack_Banner.png') no-repeat center / cover;
+  width: 100vw;
+  height: 35vw;
+}
+
+#blackjack-table {
+  background: url('../images/blackjack-tabletop.png') no-repeat center;
+  background-size: 300%;
+  width: 100 vw;
   text-align: center;
+  height: 500px; 
+}
+
+#blackjack-tabletop {
+  background: url('../images/BLACKjack-tabletop.jpg') no-repeat center / cover;
+  width: 60vw;
+  height: 30vw;
 }
 
 /* ReAdded card class with addjustments for font-size
@@ -94,4 +103,36 @@ body{
   padding-top: 3px;
   /* hide card value */
   display: none;
+}
+
+/* Media query for medium screen sizes (>= 768px) */
+@media screen and (min-width: 768px) {
+  /* Header */
+  /* Banner */
+  #blackjack_banner {
+    width: 50vw;
+    height: 15vw;
+  }
+
+  /* section */
+  #blackjack-table {
+    background-size : 150%;
+    height: 550px
+  }
+}
+
+/* Media query for large screen sizes (>= 992px) */
+@media screen and (min-width: 992px) {
+  /* Header */
+  /* Banner */
+  #blackjack_banner {
+    width: 30vw;
+    height: 10vw;
+  }
+
+  /* section */
+  #blackjack-table {
+    background-size : 85%;
+    height: 550px
+  }
 }
