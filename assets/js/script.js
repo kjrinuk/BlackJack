@@ -123,7 +123,7 @@ const player = new Role('Player');
 let gameStarted = false;
 let playerTurn = true;
 
-// Score functionality
+// Score functionality incrementing player and dealer scores
 let playerScore = 0;
 let dealerScore = 0;
 
@@ -168,7 +168,12 @@ function updateUI() {
     document.getElementById(`dealer-card-${i}`).style.left = `${15+(8*i)}%`;
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
-
+//  Player Cards defined and styled here --------------------------------------------------Split button display
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]){
+    document.getElementById('split-button').style.display = 'inline-block';
+  } else{
+    document.getElementById('split-button').style.display = 'none';
+  }
   idIterator = 1;
   player.hand.forEach(card => {
     const cardDiv = document.createElement('div');
@@ -386,4 +391,13 @@ document.getElementById('stand-button').addEventListener('click', () => {
   }
 });
 
+// split button functionality
+
+  document.getElementById('split-button').addEventListener('click', () => {
+    if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+      
+      splitCards();
+
+    }
+  });
 updateUI();

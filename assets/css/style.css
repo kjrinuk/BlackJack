@@ -4,7 +4,9 @@ body{
   background-color: green;
   font-family: Arial, sans-serif;
 }
-
+.hidden {
+  display: none;
+}
 
 .relative {
   position: relative; 
