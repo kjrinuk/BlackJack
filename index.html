@@ -14,7 +14,7 @@
 </head>
 
 <body >
-    <header>
+    <header id="header-section">
         <!-- Add menu buttons for how to play and gambler aware support link -->
         <div class="btn-group btn-primary container-fluid" role="group">
             <button id="rules" data-type="rules-button" class="btn btn-info" type="button">How to Play</button>
@@ -24,7 +24,10 @@
         <div class="d-flex justify-content-center"><div id="blackjack_banner"></div></div>
 
     </header>
-    <section id="blackjack-table" class="d-flex justify-content-center align-items-center">
+    <section id="start-game">
+        <button id="start-button" class="btn btn-primary">Start</button>
+    </section>
+    <section id="blackjack-section" class="hidden">
         <!-- Add a container-fluid class to the div bootstrap created with ChatGTP for inspiration-->
         <div class="container-fluid svh-100 d-flex justify-content-center align-items-center">
             <div class="blackjack-table p-4 rounded-3">
@@ -51,6 +54,8 @@
                 </div>
             </div>
         </div>
+        <!-- background image -->
+        <div id="background-blackjack-table"></div>
     </section>
     <footer>
 

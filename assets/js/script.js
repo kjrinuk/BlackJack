@@ -123,6 +123,16 @@ function updateScore(winner) {
     document.getElementById('dealer-score').textContent = dealerScore;
   }
 }
+
+// START BUTTON (Mobile)
+const startButton = document.getElementById('start-button');
+startButton.addEventListener('click', () => {
+  document.getElementById('header-section').style.display = 'none';
+  startButton.style.display ='none';
+  document.getElementById('blackjack-section').style.display = 'block';
+});
+
+
 // Drawn Cards defined and styled here
 function updateUI() {
   const dealerCards = document.getElementById('dealer-cards');

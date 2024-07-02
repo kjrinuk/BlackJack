@@ -1,10 +1,13 @@
 body{
   height: 100vh;
   margin: 0;
-  background-color: green;
+  background: #0C7328;
   font-family: Arial, sans-serif;
 }
 
+.hidden {
+  display: none;
+}
 
 .relative {
   position: relative; 
@@ -16,12 +19,13 @@ body{
   height: 35vw;
 }
 
-#blackjack-table {
-  background: url('../images/blackjack-tabletop.png') no-repeat center;
-  background-size: 300%;
-  width: 100 vw;
-  text-align: center;
-  height: 500px; 
+#background-blackjack-table {
+  background: url('../images/blackjack-tabletop-mobile.svg') no-repeat center / cover;
+  background-size: 110%;
+  position: absolute;
+  bottom: 0%;
+  width: 100vw;
+  height: 40vh;
 }
 
 #blackjack-tabletop {
