@@ -21,45 +21,37 @@
             <button id="ga" data-type="gamble-aware-button" class="btn btn-info">Gamble Aware Advice</button>
         </div>
 
-
-        <div class="container-fluid d-flex justify-content-center align-items-center">
-
-            <div class="row mb-12">
-                <div class="col-md-12 heading gap-5 mt-2"><img src="./assets/images/Black_Jack_Banner.png">
-
-                </div>
-            </div>
-        </div>
+        <div class="d-flex justify-content-center"><div id="blackjack_banner"></div></div>
 
     </header>
-    <!-- Add a container-fluid class to the div bootstrap created with ChatGTP for inspiration-->
-    <div class="container-fluid svh-100 d-flex justify-content-center align-items-center">
-        <div class="blackjack-table p-4 rounded-3 shadow">
-            <div class="row mb-4">
-                <div class="col text-center">
-                    <h2 class="text-white text-center">Dealer's Cards</h2>
-                    <div id="dealer-cards-value" class="text-white"></div>
-                    <div id="dealer-cards" class="card-container d-flex justify-content-center gap-2 relative"></div>
-                    <div class="text-white">Score: <span id="dealer-score">0</span></div>
+    <section id="blackjack-table" class="d-flex justify-content-center align-items-center">
+        <!-- Add a container-fluid class to the div bootstrap created with ChatGTP for inspiration-->
+        <div class="container-fluid svh-100 d-flex justify-content-center align-items-center">
+            <div class="blackjack-table p-4 rounded-3">
+                <div class="row mb-4">
+                    <div class="col text-center">
+                        <div id="dealer-cards-value" class="text-white"></div>
+                        <div id="dealer-cards" class="card-container d-flex justify-content-center gap-2 relative"></div>
+                        <div class="text-white">Score: <span id="dealer-score">0</span></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col text-center">
-                    <h2 class="text-white">Player's Cards</h2>
-                    <div id="player-cards-value" class="text-white text-center"></div>
-                    <div id="player-cards" class="card-container d-flex justify-content-center gap-2 relative"></div>
-                    <div class="text-white">Score: <span id="player-score">0</span></div>
+                <div class="row mb-4">
+                    <div class="col text-center">
+                        <div id="player-cards-value" class="text-white text-center"></div>
+                        <div id="player-cards" class="card-container d-flex justify-content-center gap-2 relative"></div>
+                        <div class="text-white">Score: <span id="player-score">0</span></div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col text-center">
-                    <button id="deal-button" class="btn btn-primary mb-2">Deal</button>
-                    <button id="hit-button" class="btn btn-secondary mb-2">Hit</button>
-                    <button id="stand-button" class="btn btn-secondary mb-2">Stand</button>
+                <div class="row">
+                    <div class="col text-center">
+                        <button id="deal-button" class="btn btn-primary mb-2">Deal</button>
+                        <button id="hit-button" class="btn btn-secondary mb-2">Hit</button>
+                        <button id="stand-button" class="btn btn-secondary mb-2">Stand</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     <footer>
 
     </footer>
