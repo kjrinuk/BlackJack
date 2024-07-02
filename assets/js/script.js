@@ -338,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// Buttons for game play, maybe add functionality for a Split button if both cards in first draw are equal to eachother.
+// Buttons for game play, hit, stand, deal, split
 document.getElementById('deal-button').addEventListener('click', () => {
   if (!gameStarted) {
     deck.resetDeck();
@@ -356,6 +356,7 @@ document.getElementById('deal-button').addEventListener('click', () => {
 
     // ensure dealer value is still hidden until player has finished his go
     document.getElementById("dealer-cards-value").style.display = "none";
+    
   }
 
 });
@@ -363,7 +364,8 @@ document.getElementById('deal-button').addEventListener('click', () => {
 document.getElementById('hit-button').addEventListener('click', () => {
   if (gameStarted && playerTurn) {
     player.addCard(deck.selectCardsFromDeck(1)[0]);
-
+    //hide dealer card value again
+    document.getElementById("dealer-cards-value").style.display = "none";
     // update player cards value
     document.getElementById("player-cards-value").innerHTML = player.total.toString();
 
@@ -386,6 +388,7 @@ document.getElementById('stand-button').addEventListener('click', () => {
     // update and reveal dealer card value
     document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
     document.getElementById("dealer-cards-value").style.display = "block";
+    
 
     updateUI();
     determineWinner();
