@@ -180,6 +180,37 @@ function updateUI() {
   }
 }
 
+// -----------------------------------------function to check both cards are the same and then split them into two hands
+function checkForBlackjack() {
+  if (player.hand.length === 2) {
+    const card1 = player.hand[0][0];
+    const card2 = player.hand[1][0];
+    const cardType = ["jack", "queen", "king", 10];
+    if (
+      cardType.includes(card1) &&
+      cardType.includes(card2) &&
+      card1 === card2
+    ) {
+      console.log("Player has a blackjack!");
+      // logic for handling a blackjack goes here
+    }
+  }
+}
+
+// --------------------------------------------function to split cards if they are the same
+function splitCards() {
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+    const card1 = player.hand[0];
+    const card2 = player.hand[1];
+    player.hand = [card1];
+    const newHand = [card2];
+    player.total = totalValue(player.hand);
+    const newTotal = totalValue(newHand);
+    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    updateUI();
+  }
+}
 // changed code to determine winner with house always having advantage in tie situations
 function determineWinner() {
   let result;
@@ -309,7 +340,7 @@ myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!
 
           // update player cards value
           document.getElementById("player-cards-value").innerHTML = player.total.toString();
-
+          
           updateUI();
           if (player.total > 21) {
             determineWinner();
@@ -329,7 +360,7 @@ myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!
           // update and reveal dealer card value
           document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
           document.getElementById("dealer-cards-value").style.display = "block";
-
+      
           updateUI();
           determineWinner();
         }
