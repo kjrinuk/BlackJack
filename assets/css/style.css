@@ -1,7 +1,7 @@
 body{
   height: 100vh;
   margin: 0;
-  background-image: url(/assets/images/BLACKjack-table-edit.png);
+  background-image: url('/assets/images/BLACKjack-table-edit.png');
   background-size: cover;
   background-position: center; 
   /* background-color: rgba(56, 142, 60, 0.5);  */
@@ -14,6 +14,12 @@ body{
 
 .relative {
   position: relative; 
+}
+
+#blackjack_banner {
+  background: url('../images/Black_Jack_Banner.png') no-repeat center / cover;
+  width: 100vw;
+  height: 35vw;
 }
 
 .blackjack-table {
@@ -94,4 +100,19 @@ body{
   padding-top: 3px;
   /* hide card value */
   display: none;
+}
+
+/* Media query for medium screen sizes (>= 768px) */
+@media screen and (min-width: 768px) {
+  /* Header */
+  /* Banner */
+  #blackjack_banner {
+    width: 50vw;
+    height: 15vw;
+  }
+}
+
+/* Media query for large screen sizes (>= 992px) */
+@media screen and (min-width: 992px) {
+
 }
