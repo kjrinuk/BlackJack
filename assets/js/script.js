@@ -182,7 +182,7 @@ function updateUI() {
 
 // -----------------------------------------function to check both cards are the same and then split them into two hands
 function checkForBlackjack() {
-  if (player.hand.length === 2) {
+  if (player.hand.length === 2 && player.total === 21) {
     const card1 = player.hand[0][0];
     const card2 = player.hand[1][0];
     const cardType = ["jack", "queen", "king", 10];
@@ -347,13 +347,13 @@ myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!
           }
         }
       });
-      // Game Mechanics Dealer hit until dealer.total < 16 or dealer.total more than or equal to player.total
+      // Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
       document.getElementById('stand-button').addEventListener('click', () => {
         if (gameStarted && playerTurn) {
           playerTurn = false;
 
 
-          while (dealer.total < 16 || dealer.total <= player.total) {
+          while (dealer.total < 17 || dealer.total < player.total) { // Dealer hits until total is 17 or more
             dealer.addCard(deck.selectCardsFromDeck(1)[0]);
           }
 
