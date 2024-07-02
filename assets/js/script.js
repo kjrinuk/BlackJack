@@ -316,13 +316,13 @@ myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!
           }
         }
       });
-      // Think we could add rule here for dealer to stop hitting if his score >= players instead of hitting while less than 17
+      // Game Mechanics Dealer hit until dealer.total < 16 or dealer.total more than or equal to player.total
       document.getElementById('stand-button').addEventListener('click', () => {
         if (gameStarted && playerTurn) {
           playerTurn = false;
 
 
-          while (dealer.total < 17) {
+          while (dealer.total < 16 || dealer.total <= player.total) {
             dealer.addCard(deck.selectCardsFromDeck(1)[0]);
           }
 
