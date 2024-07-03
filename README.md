@@ -39,8 +39,11 @@ We continually tweak and adjust this game to give the best BLACKjack experience 
 
 
 **So….?**
+![image](https://github.com/kjrinuk/BlackJack/assets/169760722/47862407-1b1c-430b-acc6-7a71717024fa)
+
 
 We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+![image](https://github.com/kjrinuk/BlackJack/assets/169760722/0ce8b8f7-b8ae-4260-a453-de5467f957a5)
 
 **Can I opt out?**
 
