@@ -1,4 +1,17 @@
 // Blackjack Game
+// On window load timer
+window.onload = function () {
+  let secondsSpent = 0;
+  const display = document.getElementById('timeSpent');
+
+  setInterval(() => {
+    secondsSpent++;
+    let minutes = Math.floor(secondsSpent / 60);
+    let seconds = secondsSpent % 60;
+    display.textContent = `Play Timer: ${minutes}:${seconds}`;
+  }, 1000);
+};
+
 /**
  * 1. Create a deck of cards
  * 2. Shuffle the deck
@@ -86,7 +99,7 @@ function totalValue(hand) {
     }
   }
   while (total > 21 && aces) {
-    total -= 10; // ---------------------------------------un-ness
+    total -= 10; // Change value of ace from 11 to 1 if total is over 21
     aces -= 1;
   }
   return total;
@@ -107,14 +120,16 @@ class Role {
 
 const dealer = new Role('Dealer');
 const player = new Role('Player');
+let splitHands = []; // Array to store split hands #
+let currentSplitHand = 0;// Index of current split hand #
 let gameStarted = false;
 let playerTurn = true;
 
-// Score functionality
+// Score functionality incrementing player and dealer scores
 let playerScore = 0;
 let dealerScore = 0;
 
-function updateScore(winner) { 
+function updateScore(winner) {
   if (winner === 'player') {
     playerScore += 1;
     document.getElementById('player-score').textContent = playerScore;
@@ -155,7 +170,14 @@ function updateUI() {
     document.getElementById(`dealer-card-${i}`).style.left = `${15+(8*i)}%`;
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
+  //  Player Cards defined and styled here --------------------------------------------------Split button display
+/*  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+    document.getElementById('split-button').style.display = 'inline-block';
 
+  } else {
+    document.getElementById('split-button').style.display = 'none';
+  }
+*/
   idIterator = 1;
   player.hand.forEach(card => {
     const cardDiv = document.createElement('div');
@@ -178,8 +200,44 @@ function updateUI() {
     document.getElementById(`player-card-${i}`).style.left = `${15+(8*i)}%`;
     document.getElementById(`player-card-${i}`).style.transform = `rotate(-${player.hand.length*(player.hand.length - i)}deg)`;
   }
+
+  // splithands length will need container to display split hands
+  if (splitHands.length > 0) {
+    const splitHandsContainer = document.getElementById('split-hands-container');
+    splitHandsContainer.innerHTML = '';
+    splitHands.forEach((hand, index) => {
+      const splitHandDiv = document.createElement('div');
+      splitHandDiv.className = 'split-hand';
+      hand.hand.forEach(card => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card-image';
+        cardDiv.style = `
+        background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
+        width: 60px;
+        height: 90px;
+        position: absolute; 
+        `;
+        splitHandDiv.appendChild(cardDiv);
+      });
+      splitHandsContainer.appendChild(splitHandDiv);
+    });
+  }
 }
 
+// --------------------------------------------function to split cards if they are the same
+function splitCards() {
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+    const card1 = player.hand[0];
+    const card2 = player.hand[1];
+    player.hand = [card1];
+    const newHand = [card2];
+    player.total = totalValue(player.hand);
+    const newTotal = totalValue(newHand);
+    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    updateUI();
+  }
+}
 // changed code to determine winner with house always having advantage in tie situations
 function determineWinner() {
   let result;
@@ -200,8 +258,7 @@ function determineWinner() {
   document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/SVG-cards/${dealer.hand[0][0]}_of_${dealer.hand[0][1]}.svg') no-repeat center / cover`;
 
   // Result card creation styles defined in style sheet atm 
-  // maybe create background images for result cards? BUSTed, Player Wins, Dealer Wins, Dealer Loses and Player Loses cards
-  // rewrite code here maybe to fix cloneNode BUST bug
+  //  fixed cloneNode BUST bug
   const resultCard = document.createElement('div');
   resultCard.className = 'card';
   resultCard.textContent = result;
@@ -215,7 +272,7 @@ function determineWinner() {
       if (dealer.total > 21) {
         dealerResultCard.textContent = 'BUST';
       } else {
-      dealerResultCard.textContent = 'LOSS';
+        dealerResultCard.textContent = 'LOSS';
       }
     } else if (result === 'LOSS') {
       playerResultCard.textContent = 'LOSS';
@@ -245,101 +302,84 @@ function determineWinner() {
 // ***************************************************************************
 // *                           Menu Buttons                                  *
 // ***************************************************************************
-document.addEventListener("DOMContentLoaded", function() {
-  
+document.addEventListener("DOMContentLoaded", function () {
+
   document.getElementById('rules').addEventListener('click', () => {
-          alert('You hit the Rule Button');
-          let myWindow = window.open("", "MsgWindow", "width=600,height=300" );
-myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
-        });
-      
+    alert('You hit the Rule Button');
+    let myWindow = window.open("", "MsgWindow", "width=600,height=300");
+    myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+  });
 
-      document.getElementById('ga').addEventListener('click', () => {
-        alert('You hit the GA Button');
-        window.open("https://www.gambleaware.org/");
-      });
-    });
 
-//   let buttons = document.getElementsByTagName("button");
+  document.getElementById('ga').addEventListener('click', () => {
+    alert('You hit the GA Button');
+    window.open("https://www.gambleaware.org/");
+  });
+});
 
-//   for (let button of buttons) {
+// Buttons for game play, hit, stand, deal, split
+document.getElementById('deal-button').addEventListener('click', () => {
+  if (!gameStarted) {
+    deck.resetDeck();
+    dealer.hand = deck.selectCardsFromDeck(2);
+    player.hand = deck.selectCardsFromDeck(2);
+    dealer.total = totalValue(dealer.hand);
+    player.total = totalValue(player.hand);
+    updateUI();
+    gameStarted = true;
+    playerTurn = true;
+
+    // turn display of player card values to on
+    document.getElementById("player-cards-value").innerHTML = player.total.toString();
+    document.getElementById("player-cards-value").style.display = "block";
+
+    // ensure dealer value is still hidden until player has finished his go
+    document.getElementById("dealer-cards-value").style.display = "none";
     
-//     button.addEventListener("click", function() {
-//           if (this.getAttribute("data-type") === "rules-button") {
-//               alert("You clicked Rules!");
-//           } else if (this.getAttribute("data-type") === "rules-button"){
-//               let gameType = this.getAttribute("data-type");
-//               alert(`You clicked ${gameType}`);
-//           }
-//       });
-//   }
-// });
+  }
+
+});
+
+document.getElementById('hit-button').addEventListener('click', () => {
+  if (gameStarted && playerTurn) {
+    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    //hide dealer card value again
+    document.getElementById("dealer-cards-value").style.display = "none";
+    // update player cards value
+    document.getElementById("player-cards-value").innerHTML = player.total.toString();
+
+    updateUI();
+    if (player.total > 21) {
+      determineWinner();
+    }
+  }
+});
+// Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
+document.getElementById('stand-button').addEventListener('click', () => {
+  if (gameStarted && playerTurn) {
+    playerTurn = false;
 
 
+    while (dealer.total < 17 || dealer.total < player.total) { // Dealer hits until total is 17 or more
+      dealer.addCard(deck.selectCardsFromDeck(1)[0]);
+    }
 
+    // update and reveal dealer card value
+    document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+    document.getElementById("dealer-cards-value").style.display = "block";
+    
 
-// document.getElementById('rules-button').addEventListener('click', () => {
-//       alert('You hit the Rule Button');
-//     }
+    updateUI();
+    determineWinner();
+  }
+});
 
-//     document.getElementById('gamble-aware-button').addEventListener('click', () => {
-//         alert("You hit the Rule Button");
-//       }
+// split button functionality
 
+document.getElementById('split-button').addEventListener('click', () => {
+      if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+        splitCards(); // split cards if they are the same
+        updateUI(); // update UI to show split cards
+      }});
 
-
-      // Buttons for game play, maybe add functionality for a Split button if both cards in first draw are equal to eachother.
-      document.getElementById('deal-button').addEventListener('click', () => {
-        if (!gameStarted) {
-          deck.resetDeck();
-          dealer.hand = deck.selectCardsFromDeck(2);
-          player.hand = deck.selectCardsFromDeck(2);
-          dealer.total = totalValue(dealer.hand);
-          player.total = totalValue(player.hand);
-          updateUI();
-          gameStarted = true;
-          playerTurn = true;
-
-          // turn display of player card values to on
-          document.getElementById("player-cards-value").innerHTML = player.total.toString();
-          document.getElementById("player-cards-value").style.display = "block";
-
-          // ensure dealer value is still hidden until player has finished his go
-          document.getElementById("dealer-cards-value").style.display = "none";
-        }
-
-      });
-
-      document.getElementById('hit-button').addEventListener('click', () => {
-        if (gameStarted && playerTurn) {
-          player.addCard(deck.selectCardsFromDeck(1)[0]);
-
-          // update player cards value
-          document.getElementById("player-cards-value").innerHTML = player.total.toString();
-
-          updateUI();
-          if (player.total > 21) {
-            determineWinner();
-          }
-        }
-      });
-      // Game Mechanics Dealer hit until dealer.total < 16 or dealer.total more than or equal to player.total
-      document.getElementById('stand-button').addEventListener('click', () => {
-        if (gameStarted && playerTurn) {
-          playerTurn = false;
-
-
-          while (dealer.total < 16 || dealer.total <= player.total) {
-            dealer.addCard(deck.selectCardsFromDeck(1)[0]);
-          }
-
-          // update and reveal dealer card value
-          document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
-          document.getElementById("dealer-cards-value").style.display = "block";
-
-          updateUI();
-          determineWinner();
-        }
-      });
-
-      updateUI();
+    updateUI();
