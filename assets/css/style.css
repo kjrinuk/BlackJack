@@ -1,7 +1,7 @@
 body{
   height: 100vh;
   margin: 0;
-  background-color: green;
+  background: green url('../images/background-new.jpg') no-repeat center / cover;;
   font-family: Arial, sans-serif;
 }
 .hidden {
