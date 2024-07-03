@@ -204,6 +204,30 @@ function determineWinner() {
     result = 'BUST';
     updateScore('dealer');
   } else if (dealer.total > 21 || player.total > dealer.total) {
+    // Reveal dealer's hidden card once result has been assigned a value
+    document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/SVG-cards/${dealer.hand[0][0]}_of_${dealer.hand[0][1]}.svg') no-repeat center / cover`;
+    // Result card creation styles defined in style sheet atm
+    //  fixed cloneNode BUST bug
+    const resultCard = document.createElement('div');
+    resultCard.className = 'card';
+    resultCard.textContent = result;
+    if (result !== undefined) {
+      const playerResultCard = resultCard.cloneNode(true);
+      const dealerResultCard = resultCard.cloneNode(true);
+      if (result === 'WIN') {
+        document.getElementById('player-cards').appendChild(playerResultCard);
+        document.getElementById('dealer-cards').appendChild(dealerResultCard);
+      } else {
+        document.getElementById('player-cards').appendChild(resultCard);
+        // update and reveal dealer card value
+        document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+        document.getElementById("dealer-cards-value").style.display = "block";
+        // document.getElementById('dealer-cards').appendChild(resultCard);
+        document.getElementById('dealer-cards').appendChild(resultCard.cloneNode(true));
+      }
+      gameStarted = false;
+    }
+  }
     result = 'WIN';
     updateScore('player');
   } else if (player.total <= dealer.total) {
