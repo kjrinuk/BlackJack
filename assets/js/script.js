@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Buttons for game play, hit, stand, deal, split
 document.getElementById("deal-button").addEventListener("click", () => {
   if (!gameStarted) {
-    
+    resetDisplayedCards(); // Reset displayed cards
     deck.resetDeck();
     dealer.hand = deck.selectCardsFromDeck(2);
     player.hand = deck.selectCardsFromDeck(2);
@@ -372,12 +372,12 @@ document.getElementById("deal-button").addEventListener("click", () => {
     // ensure dealer value is still hidden until player has finished his go
     document.getElementById("dealer-cards-value").style.display = "none";
   } else if (gameStarted && playerTurn && player.hand.length === 2 && player.total === 21) {
-    playerTurn = false;
+    alert("You Just Hit 21! Black Jack Baby! Stand or Hit to continue.");
     updateUI();
     determineWinner();
-  } else if (gameStarted && ){ /////////////////////////////////////////////////////////////////////
-
-  }
+  } else if (gameStarted && playerTurn && player.total < 21) { 
+    alert("You must finish the current game before starting a new one.");
+  } 
 });
 
 document.getElementById("hit-button").addEventListener("click", () => {
@@ -440,12 +440,17 @@ if (playerTurn && player.total === 21) {
   determineWinner();
 }
 function resetDisplayedCards() {
-  document.getElementById("dealer-cards").innerHTML = "";
-  document.getElementById("player-cards").innerHTML = "";
-  document.getElementById("player-cards-value").innerHTML = "";
-  document.getElementById("dealer-cards-value").innerHTML = "";
-  document.getElementById("split-hands-container").innerHTML = "";
+  player.splitHands = [];
+  player.splitTotal = 0;
+  document.getElementById("player-hand-second").style.display =
+  "none";
+  document.getElementById("split-hand-value").style.display = "none";
 
+  console.log("we hit the resetDisplayedCards function does it work?");
 }
+
+
+
+
 
 updateUI();
