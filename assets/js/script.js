@@ -12,36 +12,6 @@ window.onload = function () {
   }, 1000);
 };
 
-/**
- * 1. Create a deck of cards
- * 2. Shuffle the deck
- * 3. Ask the player to "hit" or "stand"
- * 4. If the player "hits", add a card to the player's hand
- * 5. If the player "stands", stop the game, allow dealers turn
- * 6. If the player's hand is over 21, the player loses
- * 7. If the player's hand is less than or equal to 21, the dealer must draw cards until their hand is greater than the player's
- * 8. If the dealer's hand is over 21, the player wins
- * 9. If the dealer's hand is greater than the player's, the dealer wins
- * 10. If the dealer's hand is less than the player's, the player wins
- * 11. If the dealer's hand is equal to the player's, the dealer wins
- * 12. The player's score is displayed
- * 13. The dealer's score is displayed
- * 14. The player's score is updated
- * 15. The dealer's score is updated
- * 16. The player's hand is displayed
- * 17. The dealer's hand is displayed
- * 18. The player's hand is updated
- * 19. The dealer's hand is updated
- * 20. The player's hand is evaluated
- * 21. The dealer's hand is evaluated
- * 22. The winner is determined
- * 23. The game is reset
- * 24. The game is started
- * 25. The game is stopped
- * 26. The game is continued
- * 
- */
-
 // Defining or instantiating Card-Deck
 const deck = {
   rank: [2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king", "ace"],
@@ -142,8 +112,10 @@ function updateScore(winner) {
 function updateUI() {
   const dealerCards = document.getElementById('dealer-cards');
   const playerCards = document.getElementById('player-cards');
+  const playerSplitCards = document.getElementById('split-hands-container');
   dealerCards.innerHTML = '';
   playerCards.innerHTML = '';
+  playerSplitCards.innerHTML = '';
 
   let idIterator = 1;
   dealer.hand.forEach(card => {
@@ -202,26 +174,26 @@ function updateUI() {
   }
 
   // splithands length will need container to display split hands
-  if (splitHands.length > 0) {
-    const splitHandsContainer = document.getElementById('split-hands-container');
-    splitHandsContainer.innerHTML = '';
-    splitHands.forEach((hand, index) => {
-      const splitHandDiv = document.createElement('div');
-      splitHandDiv.className = 'split-hand';
-      hand.hand.forEach(card => {
-        const cardDiv = document.createElement('div');
-        cardDiv.className = 'card-image';
-        cardDiv.style = `
-        background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
-        width: 60px;
-        height: 90px;
-        position: absolute; 
-        `;
-        splitHandDiv.appendChild(cardDiv);
-      });
-      splitHandsContainer.appendChild(splitHandDiv);
-    });
-  }
+  // if (splitHands.length > 0) {
+  //   const splitHandsContainer = document.getElementById('split-hands-container');
+  //   splitHandsContainer.innerHTML = '';
+  //   splitHands.forEach((hand, index) => {
+  //     const splitHandDiv = document.createElement('div');
+  //     splitHandDiv.className = 'split-hand';
+  //     hand.hand.forEach(card => {
+  //       const cardDiv = document.createElement('div');
+  //       cardDiv.className = 'card-image';
+  //       cardDiv.style = `
+  //       background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
+  //       width: 60px;
+  //       height: 90px;
+  //       position: absolute; 
+  //       `;
+  //       splitHandDiv.appendChild(cardDiv);
+  //     });
+  //     splitHandsContainer.appendChild(splitHandDiv);
+  //   });
+  // }
 }
 
 // --------------------------------------------function to split cards if they are the same
@@ -233,7 +205,7 @@ function splitCards() {
     const newHand = [card2];
     player.total = totalValue(player.hand);
     const newTotal = totalValue(newHand);
-    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    player.addCard(deck.selectCardsFromDeck(1)[0]);//this is a problem for issuing two new cards on first card
     player.addCard(deck.selectCardsFromDeck(1)[0]);
     updateUI();
   }
@@ -250,6 +222,9 @@ function determineWinner() {
   } else if (player.total <= dealer.total) {
     result = 'LOSS';
     updateScore('dealer');
+  } else if (player.total === dealer.total) {
+    result = 'PUSH';
+    // updateScore('dealer'); // House always wins in a tie normally but here we're not incrementing either player of dealer as a PUSH is a tie
   } else {
     console.log('Something has gone wrong!'); //internal bug checking we should oped this out to a modal in the deployment.
   }
@@ -280,6 +255,9 @@ function determineWinner() {
     } else if (result === 'BUST') {
       playerResultCard.textContent = 'BUST';
       dealerResultCard.textContent = 'WIN';
+    } else if (result === 'PUSH') {
+      playerResultCard.textContent = 'TIE'; // Tie is a push
+      dealerResultCard.textContent = 'TIE'; // Tie is a push
     }
 
     document.getElementById('player-cards').appendChild(playerResultCard);
@@ -339,7 +317,27 @@ document.getElementById('deal-button').addEventListener('click', () => {
   }
 
 });
+document.getElementById('hit-button').addEventListener('click', () => {
+  if (gameStarted && playerTurn) {
+    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    //hide dealer card value again
+    document.getElementById("dealer-cards-value").style.display = "none";
+    // update player cards value
+    document.getElementById("player-cards-value").innerHTML = player.total.toString();
 
+    updateUI();
+    if (player.total >= 21) {
+      // rule for BlackJack on
+      if (player.total === 21) {
+        playerTurn = false;
+        while (dealer.total < 17 || dealer.total < player.total) {
+          dealer.addCard(deck.selectCardsFromDeck(1)[0]);
+        }
+        updateUI();
+        determineWinner();
+      }
+    }  }
+});
 document.getElementById('hit-button').addEventListener('click', () => {
   if (gameStarted && playerTurn) {
     player.addCard(deck.selectCardsFromDeck(1)[0]);
