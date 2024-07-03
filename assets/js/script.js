@@ -120,7 +120,8 @@ class Role {
 
 const dealer = new Role('Dealer');
 const player = new Role('Player');
-let splitHands = []; // Array to store split hands #
+player.splitHands = []; // Array to store split hands in player object ONLY
+player.splitTotal = 0; // For player object ONLY
 let currentSplitHand = 0;// Index of current split hand #
 let gameStarted = false;
 let playerTurn = true;
@@ -161,23 +162,23 @@ function updateUI() {
     dealerCards.appendChild(cardDiv);
   });
 
-  //Override styling to hide dealer's first card
-  document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/back-card.jpg') no-repeat center / cover`;
-
-  if (dealer.hand.length > 0) dealerCards.innerHTML += `<div id="spacer"></div>`; // Required to provide sufficient space to display cardDiv with absolute positioning
+  if (dealer.hand.length > 0) {
+    document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/back-card.jpg') no-repeat center / cover`; //Override styling to hide dealer's first card
+    dealerCards.innerHTML += `<div id="spacer"></div>` // Required to provide sufficient space to display cardDiv with absolute positioning
+  };
 
   for (let i = 1; i <= dealer.hand.length; i++) {
     document.getElementById(`dealer-card-${i}`).style.left = `${15+(8*i)}%`;
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
   //  Player Cards defined and styled here --------------------------------------------------Split button display
-/*  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
     document.getElementById('split-button').style.display = 'inline-block';
 
   } else {
     document.getElementById('split-button').style.display = 'none';
   }
-*/
+
   idIterator = 1;
   player.hand.forEach(card => {
     const cardDiv = document.createElement('div');
@@ -194,7 +195,7 @@ function updateUI() {
     playerCards.appendChild(cardDiv);
   });
 
-  if (player.hand.length > 0) playerCards.innerHTML += `<div id="spacer"></div>`;
+  if (player.hand.length > 0) {playerCards.innerHTML += `<div id="spacer"></div>`};
 
   for (let i = 1; i <= player.hand.length; i++) {
     document.getElementById(`player-card-${i}`).style.left = `${15+(8*i)}%`;
@@ -202,13 +203,13 @@ function updateUI() {
   }
 
   // splithands length will need container to display split hands
-  if (splitHands.length > 0) {
+  if (player.splitHands.length > 0) {
     const splitHandsContainer = document.getElementById('split-hands-container');
     splitHandsContainer.innerHTML = '';
-    splitHands.forEach((hand, index) => {
-      const splitHandDiv = document.createElement('div');
-      splitHandDiv.className = 'split-hand';
-      hand.hand.forEach(card => {
+    splitHandsContainer.style.height = '90px';
+
+    positionIterator = 1;
+    player.splitHands.forEach(card => {
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card-image';
         cardDiv.style = `
@@ -216,25 +217,28 @@ function updateUI() {
         width: 60px;
         height: 90px;
         position: absolute; 
+        left: ${15+(8*positionIterator)}%;
+        transform: rotate(-${5*(player.splitHands.length - positionIterator)}deg);
         `;
-        splitHandDiv.appendChild(cardDiv);
+        splitHandsContainer.appendChild(cardDiv);
+        positionIterator += 1
       });
-      splitHandsContainer.appendChild(splitHandDiv);
-    });
+
+    document.getElementById('player-hand-initial').style.display = 'inline-block';
+    document.getElementById('player-hand-second').style.display = 'inline-block'
+    // document.getElementById('reveal-score').style.display = 'block';
+
+    document.getElementById("split-hand-value").innerHTML = player.splitTotal.toString();
+    document.getElementById("split-hand-value").style.display = "block";
   }
 }
 
 // --------------------------------------------function to split cards if they are the same
 function splitCards() {
   if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-    const card1 = player.hand[0];
-    const card2 = player.hand[1];
-    player.hand = [card1];
-    const newHand = [card2];
-    player.total = totalValue(player.hand);
-    const newTotal = totalValue(newHand);
-    player.addCard(deck.selectCardsFromDeck(1)[0]);
-    player.addCard(deck.selectCardsFromDeck(1)[0]);
+    player.splitHands.push(player.hand[1]);
+    player.splitTotal = totalValue(player.splitHands);
+    player.hand.pop();
     updateUI();
   }
 }
