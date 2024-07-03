@@ -1,0 +1,92 @@
+<!-- temporary page to test idea of creating an overlay on click of rules button -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlay Example</title>
+    <style>
+        /* Basic styling for overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(36, 175, 36, 0.8);
+            color: white;
+            text-align: center;
+            z-index: 99;
+            padding: 20px;
+        }
+        .overlay-content {
+            margin-top: 10%;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            cursor: pointer;
+            
+        }
+    </style>
+</head>
+<body>
+
+<h2>Overlay Screen Example</h2>
+
+<!-- Button to open the overlay -->
+<button id="openOverlayBtn">Open Overlay</button>
+
+<!-- The Overlay -->
+<div id="overlay" class="overlay">
+    <!-- <span class="close-btn" id="closeOverlayBtn">&times;</span> -->
+    <div class="overlay-content">
+        <h1>How to play</h1>
+        <h1>B L A C K   J A C K</h1>
+        <p>To beat the dealer and win, you need ...</p>
+        <ul>
+          <li>Be dealt with a BLACKjack</li>
+          <li>get more points than the dealer</li>
+          <h3><strong>But ...</strong></h3>
+          <h4>You don't want to get more than 21 because you will lose!</h4>
+        </ul>
+        <img src="/assets/images/backgrounds/poker-table-cards-chips-vector-600.webp" alt="Placeholder Image">
+    </div>
+    <button id="closeOverlayBtn">Continue</button>
+</div>
+
+<script>
+// JavaScript to handle the overlay
+
+// Get the overlay element
+var overlay = document.getElementById("overlay");
+
+// Get the button that opens the overlay
+var openBtn = document.getElementById("openOverlayBtn");
+
+// Get the <span> element that closes the overlay
+var closeBtn = document.getElementById("closeOverlayBtn");
+
+// When the user clicks the button, open the overlay 
+openBtn.onclick = function() {
+  overlay.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the overlay
+closeBtn.onclick = function() {
+  overlay.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the overlay, close it
+window.onclick = function(event) {
+  if (event.target == overlay) {
+    overlay.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>

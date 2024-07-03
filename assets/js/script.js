@@ -302,20 +302,15 @@ function determineWinner() {
 // ***************************************************************************
 // *                           Menu Buttons                                  *
 // ***************************************************************************
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
 
-  document.getElementById('rules').addEventListener('click', () => {
-    alert('You hit the Rule Button');
-    let myWindow = window.open("", "MsgWindow", "width=600,height=300");
-    myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
-  });
-
-
-  // document.getElementById('ga').addEventListener('click', () => {
-  //   alert('You hit the GA Button');
-  //   window.open("https://www.gambleaware.org/");
-  // });
-});
+//   document.getElementById('rules').addEventListener('click', () => {
+//     alert('You hit the Rule Button');
+//     let myWindow = window.open("", "MsgWindow", "width=600,height=300");
+//     myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+//   });
+ 
+// });
 
 // Buttons for game play, hit, stand, deal, split
 document.getElementById('deal-button').addEventListener('click', () => {
