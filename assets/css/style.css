@@ -5,6 +5,9 @@ body{
   font-family: Arial, sans-serif;
 }
 
+.hidden {
+  display: none;
+}
 
 .relative {
   position: relative; 
@@ -21,7 +24,7 @@ body{
   background-size: 300%;
   width: 100 vw;
   text-align: center;
-  height: 500px; 
+  height: 400px; 
 }
 
 #blackjack-tabletop {
@@ -68,6 +71,11 @@ body{
 .btn:hover {
   transform: translateY(-5px);
   /* Move the button up by ?*/
+}
+
+#deal-button {
+  background: #31A9FF;
+  border: none;
 }
 
 #hit-button {
