@@ -6,10 +6,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Overlay Example</title>
+  <!-- Favicon link -->
+  <link rel="icon" type="image/x-icon" href="/assets/images/help/aces-fav.png">
   <style>
     /* Styling for overlay */
     .overlay {
-      display: none;
+      /* display: none; */
       position: fixed;
       top: 0;
       left: 0;
@@ -83,12 +85,12 @@
 
 <body>
 
-  <h2>Overlay Screen for Blackjack Rules</h2>
+  <!-- <h2>Overlay Screen for Blackjack Rules</h2> -->
 
   <!-- Button to open the overlay -->
-  <button id="openOverlayBtn">Open Overlay</button>
+  <!-- <button id="openOverlayBtn">Open Overlay</button> -->
 
-  <!-- The Overlay -->
+  <!-- Rules Page overlay -->
   <div id="overlay" class="overlay">
     <!-- <span class="close-btn" id="closeOverlayBtn">&times;</span> -->
     <div class="overlay-content">
@@ -128,7 +130,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <button class="close-btn" id="closeOverlayBtn">let's play!!!</button>
+        <button class="close-btn" onclick="window.location='index.html';" id="closeOverlayBtn">let's play!!!</button>
         <p>* Blackjack is having 21 from the 2 cards you are dealt </p>
       </div>
 

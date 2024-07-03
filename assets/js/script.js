@@ -299,19 +299,6 @@ function determineWinner() {
   gameStarted = false;
 }
 
-// ***************************************************************************
-// *                           Menu Buttons                                  *
-// ***************************************************************************
-// document.addEventListener("DOMContentLoaded", function () {
-
-//   document.getElementById('rules').addEventListener('click', () => {
-//     alert('You hit the Rule Button');
-//     let myWindow = window.open("", "MsgWindow", "width=600,height=300");
-//     myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
-//   });
- 
-// });
-
 // Buttons for game play, hit, stand, deal, split
 document.getElementById('deal-button').addEventListener('click', () => {
   if (!gameStarted) {
@@ -378,3 +365,58 @@ document.getElementById('split-button').addEventListener('click', () => {
       }});
 
     updateUI();
+
+
+    // ***************************************************************************
+// *                           Menu Buttons                                  *
+// ***************************************************************************
+showOverlay() {
+this.addEventListener('click', () => { 
+  alert("lets see the overlay");
+});
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.getElementById('rules').addEventListener('click', () => {
+    alert('You hit the Rule Button');
+//     let myWindow = window.open("", "MsgWindow", "width=600,height=300");
+//     myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+
+    //
+    // JavaScript to handle the Game Rules overlay
+    //
+    // Get the overlay element
+    let overlay = document.getElementById("overlay");
+
+    // Get the button that opens the overlay
+    let openBtn = document.getElementById("openOverlayBtn");
+
+    // Get the <span> element that closes the overlay
+    let closeBtn = document.getElementById("closeOverlayBtn");
+
+    // When the user clicks the button, open the overlay 
+    openBtn.onclick = function () {
+      overlay.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the overlay
+    closeBtn.onclick = function () {
+      overlay.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the overlay, close it
+    window.onclick = function (event) {
+      if (event.target == overlay) {
+        overlay.style.display = "none";
+      }
+    }
+
+      });
+ 
+});
+
+    //
+    // End of code for handling Game Rules overlay
+    //
