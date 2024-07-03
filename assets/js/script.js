@@ -233,6 +233,11 @@ function updateUI() {
 
     document.getElementById("split-hand-value").innerHTML = player.splitTotal.toString();
     document.getElementById("split-hand-value").style.display = "block";
+
+    // Start to play for second hand
+    if ((document.getElementsByClassName('card').length) === 2) {
+      document.getElementById("player-hand-initial").style.display = 'none';
+    }
   }
 }
 
@@ -375,6 +380,12 @@ document.getElementById('hit-button').addEventListener('click', () => {
       } else if (player.total > 21) {
       determineWinner();
     }
+  }
+
+  if (player.total > 21) {
+    // update and reveal dealer card value
+    document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+    document.getElementById("dealer-cards-value").style.display = "block";
   }
 });
 // Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
