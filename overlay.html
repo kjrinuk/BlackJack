@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Overlay Example</title>
   <style>
-    /* Basic styling for overlay */
+    /* Styling for overlay */
     .overlay {
       display: none;
       position: fixed;
@@ -39,14 +39,14 @@
       cursor: pointer;
       border: 0;
       color: white;
-      background-color:brown;
+      background-color: darkorange;
       border-radius: 15px;
       margin-top: 5px;
     }
 
     .close-btn:hover,
     .close-btn:focus {
-      background-color: darkorange;
+      background-color: goldenrod;
     }
 
     .table-center {
@@ -136,16 +136,16 @@
   </div>
 
   <script>
-    // JavaScript to handle the overlay
+    // JavaScript to handle the game rules overlay
 
     // Get the overlay element
-    var overlay = document.getElementById("overlay");
+    let overlay = document.getElementById("overlay");
 
     // Get the button that opens the overlay
-    var openBtn = document.getElementById("openOverlayBtn");
+    let openBtn = document.getElementById("openOverlayBtn");
 
     // Get the <span> element that closes the overlay
-    var closeBtn = document.getElementById("closeOverlayBtn");
+    let closeBtn = document.getElementById("closeOverlayBtn");
 
     // When the user clicks the button, open the overlay 
     openBtn.onclick = function () {
