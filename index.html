@@ -13,17 +13,19 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body >
+<body>
     <header>
         <!-- Add menu buttons for how to play and gambler aware support link -->
         <div class="btn-group btn-primary container-fluid" role="group">
             <button id="rules" data-type="rules-button" class="btn btn-info" type="button">How to Play</button>
-            <button id="ga" data-type="gamble-aware-button" class="btn btn-info">Gamble Aware Advice</button>
+            <button id="ga" onclick="window.open('https://www.gambleaware.org/')" data-type="gamble-aware-button" class="btn btn-info">Gamble Aware Advice</button>
         </div>
 
-        <div class="d-flex justify-content-center"><div id="blackjack_banner">
-            
-        </div></div>
+        <div class="d-flex justify-content-center">
+            <div id="blackjack_banner">
+
+            </div>
+        </div>
 
     </header>
     <section id="blackjack-table" class="d-flex justify-content-center align-items-center">
@@ -33,21 +35,24 @@
                 <div class="row mb-4">
                     <div class="col text-center">
                         <div id="dealer-cards-value" class="text-white"></div>
-                        <div id="dealer-cards" class="card-container d-flex justify-content-center gap-2 relative"></div>
+                        <div id="dealer-cards" class="card-container d-flex justify-content-center gap-2 relative">
+                        </div>
                         <div class="text-white">Score: <span id="dealer-score">0</span></div>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col text-center">
                         <div id="player-cards-value" class="text-white text-center"></div>
-                        <div id="player-cards" class="card-container d-flex justify-content-center gap-2 relative"></div>
+                        <div id="player-cards" class="card-container d-flex justify-content-center gap-2 relative">
+                        </div>
                         <div class="text-white">Score: <span id="player-score">0</span></div>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col text-center">
                         <div id="player-cards-value" class="text-white text-center"></div>
-                        <div id="split-hands-container" class="card-container d-flex justify-content-center gap-2 relative"></div>
+                        <div id="split-hands-container"
+                            class="card-container d-flex justify-content-center gap-2 relative"></div>
                         <div class="text-white">Score: <span id="player-score">0</span></div>
                     </div>
                 </div>

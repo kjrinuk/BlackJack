@@ -311,10 +311,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  document.getElementById('ga').addEventListener('click', () => {
-    alert('You hit the GA Button');
-    window.open("https://www.gambleaware.org/");
-  });
+  // document.getElementById('ga').addEventListener('click', () => {
+  //   alert('You hit the GA Button');
+  //   window.open("https://www.gambleaware.org/");
+  // });
 });
 
 // Buttons for game play, hit, stand, deal, split
