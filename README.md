@@ -7,6 +7,8 @@
 
 This is where you'll be entertained to the max.  **BlackJack** ***like*** **you've never seen it before** 😎
 
+![image](https://github.com/kjrinuk/BlackJack/assets/169760722/129a1c72-b7e8-4198-af8a-ad037d4286ee)
+
 
 - [Rules](#rules)
 - [Credits](#credits)
