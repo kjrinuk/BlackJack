@@ -3,12 +3,11 @@
 window.onload = function () {
   let secondsSpent = 0;
   const display = document.getElementById("timeSpent");
-
   setInterval(() => {
     secondsSpent++;
     let minutes = Math.floor(secondsSpent / 60);
     let seconds = secondsSpent % 60;
-    display.textContent = `Play Timer: ${minutes}:${seconds}`;
+    display.textContent = `Timer: ${minutes}:${seconds}`;
   }, 1000);
 };
 
