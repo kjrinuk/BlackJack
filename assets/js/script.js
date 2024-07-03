@@ -171,13 +171,13 @@ function updateUI() {
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
   //  Player Cards defined and styled here --------------------------------------------------Split button display
-/*  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
     document.getElementById('split-button').style.display = 'inline-block';
 
   } else {
     document.getElementById('split-button').style.display = 'none';
   }
-*/
+
   idIterator = 1;
   player.hand.forEach(card => {
     const cardDiv = document.createElement('div');
