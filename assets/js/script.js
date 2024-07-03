@@ -224,9 +224,12 @@ function updateUI() {
         positionIterator += 1
       });
 
-    document.getElementById('player-hand-initial').style.display = 'inline-block';
-    document.getElementById('player-hand-second').style.display = 'inline-block'
-    // document.getElementById('reveal-score').style.display = 'block';
+    document.getElementById('player-hand-initial').style.display = 'block';
+    document.getElementById('player-hand-second').style.display = 'block';
+
+    if(player.hand === 1){
+      document.getElementById('player-cards-value').innerText = (player.total / 2);
+    }
 
     document.getElementById("split-hand-value").innerHTML = player.splitTotal.toString();
     document.getElementById("split-hand-value").style.display = "block";
