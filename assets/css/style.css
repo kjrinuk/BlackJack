@@ -70,6 +70,16 @@ body{
   /* Move the button up by ?*/
 }
 
+#hit-button {
+  background: #29D36E;
+  border: none;
+}
+
+#stand-button {
+  background: #FF5442;
+  border: none;
+}
+
 .heading {
 
   text-align: center;
