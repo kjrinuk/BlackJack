@@ -442,7 +442,6 @@ function resetDisplayedCards() {
   "none";
   document.getElementById("split-hand-value").style.display = "none";
 
-  console.log("we hit the resetDisplayedCards function does it work?");
 }
 
 
