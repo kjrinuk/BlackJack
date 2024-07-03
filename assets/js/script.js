@@ -354,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Buttons for game play, hit, stand, deal, split
 document.getElementById("deal-button").addEventListener("click", () => {
   if (!gameStarted) {
-    resetDisplayedCards();
+    
     deck.resetDeck();
     dealer.hand = deck.selectCardsFromDeck(2);
     player.hand = deck.selectCardsFromDeck(2);
@@ -371,10 +371,12 @@ document.getElementById("deal-button").addEventListener("click", () => {
 
     // ensure dealer value is still hidden until player has finished his go
     document.getElementById("dealer-cards-value").style.display = "none";
-  } else if (player.hand.length === 2 && playerTurn && player.total === 21) {
+  } else if (gameStarted && playerTurn && player.hand.length === 2 && player.total === 21) {
     playerTurn = false;
     updateUI();
     determineWinner();
+  } else if (gameStarted && ){ /////////////////////////////////////////////////////////////////////
+
   }
 });
 
@@ -443,7 +445,7 @@ function resetDisplayedCards() {
   document.getElementById("player-cards-value").innerHTML = "";
   document.getElementById("dealer-cards-value").innerHTML = "";
   document.getElementById("split-hands-container").innerHTML = "";
-  
+
 }
 
 updateUI();
