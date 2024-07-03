@@ -39,6 +39,9 @@ We continually tweak and adjust this game to give the best BLACKjack experience 
 
 
 **So….?**
+![image](https://github.com/kjrinuk/BlackJack/assets/169760722/1fec1a35-b4f9-479c-bd45-d1c2f6ee9fee)
+
+
 
 We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
 
