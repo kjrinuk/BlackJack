@@ -5,7 +5,7 @@ body{
   font-family: Arial, sans-serif;
 }
 .hidden {
-  display: hidden;
+  display: none;
 }
 
 .relative {
@@ -36,16 +36,18 @@ body{
  to make results cards inline with drawn cards*/
 .card {
   width: 60px;
-  height: 90px;
-  background-color: #fff;
-  border-radius: 5px;
+  height: 30px;
+  background-color: brown;
+  color: white;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
+  border: none;
   font-size: 20px;
-  position: absolute; 
-  left: 80%;
+  position: absolute;
+  bottom: 35%;
 }
 
 /* Below styling is similar to above but keeping separate for now */
@@ -93,7 +95,7 @@ body{
 
 /* Add styling for card values */
 /* needs to be hidden until cards are dealt */
-#player-cards-value, #dealer-cards-value {
+#player-cards-value, #dealer-cards-value, #split-hand-value {
   background-color: brown;
   border-radius: 25%;
   
