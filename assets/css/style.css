@@ -156,7 +156,7 @@ body{
 /* Beginning of styling for Rules Page Overlay and Gamble Aware */
 /*                       Menu Options                           */             */
 /*                                                              */
-#rules,
+#openOverlayBtn,
 #ga {
   margin: 7px;
   padding: 7px;
@@ -165,9 +165,10 @@ body{
   color: #388e3c;
 }
 
-#rules:hover {
-  color:white;
-  background-color: #388e3c;
+
+#openOverlayBtn:hover {
+  background-color:white;
+  color: #388e3c;
 } 
 #ga:hover {
   color: white;
@@ -181,10 +182,10 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/assets/images/help/background-dark-blue.png);
+  background-image: url(/assets/images/help/background-red.png);
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.9;
+  opacity: 0.75;
   color: white;
   text-align: center;
   z-index: 99;
@@ -205,14 +206,15 @@ body{
   cursor: pointer;
   border: 0;
   color: white;
-  background-color: darkorange;
+  background-color: #388e3c;
   border-radius: 15px;
   margin-top: 5px;
 }
 
 .close-btn:hover,
 .close-btn:focus {
-  background-color: goldenrod;
+  color: #388e3c;
+  background-color: white;
 }
 
 .table-center {

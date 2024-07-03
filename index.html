@@ -20,75 +20,76 @@
 <body>
     <header>
         <!-- Add menu buttons for how to play and gambler aware support link -->
-        <!-- <div class="btn-group btn-primary container-fluid" role="group"> -->
-            <div class="btn-group btn btn-success container-fluid">
+            <div class="btn-group btn btn-success container-fluid" role="group">
                 <!-- <button id='rules' data-type="rules-button" class="btn btn-info" type="button">How to Play</button> -->
-            <button id="rules" onclick="window.location='overlay.html';" data-type="rules-button" class="btn btn-info" type="button">How to Play</button>
-            <button id="openOverlayBtn">How to Play</button>
-            <button id="ga" onclick="window.open('https://www.gambleaware.org/')" data-type="gamble-aware-button" class="btn btn-info">Gamble Aware Advice</button>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <div id="blackjack_banner">
-
+                <!-- <button id="rules" onclick="window.location='overlay.html';" data-type="rules-button"
+                    class="btn btn-info" type="button">How to Play</button> -->
+                <button id="openOverlayBtn" class="btn btn-success" type="button">How to Play</button>
+                <button id="ga" onclick="window.open('https://www.gambleaware.org/')" data-type="gamble-aware-button"
+                    class="btn btn-success">Gamble Aware Advice</button>
             </div>
-        </div>
+
+            <div class="d-flex justify-content-center">
+                <div id="blackjack_banner">
+
+                </div>
+            </div>
 
     </header>
-    
-   <!-- Rules Page overlay -->
+</body>
+    <!-- Rules Page overlay -->
     <div id="overlay" class="overlay">
-    <div class="overlay-content">
-      <h1>BLACKJACK RULES</h1>
-      <img src="/assets/images/backgrounds/poker-table-cards-chips-vector-600.webp" alt="Placeholder Image">
-      <h2>To beat the dealer and <strong>win</strong>, you need to...</h2>
-      <p>Be dealt with a <strong>Blackjack*</strong> or hold more points in your hand than the dealer</p>
-      <p>The dealer will continue to take cards until they have 17 or more</p>
-      <p>Don't get more than 21 because you will bust and lose!</p>
-      <p>If you win you'll have 1 added to your score</p>
-      <p>If you win with <strong>Blackjack*</strong> you'll have 2 added to your score</p>
-      <p>And if the dealer wins they'll have 1 added to their score</p>
-      <p>Draw 2 cards of the same kind you can split and play 2 hands for twice the fun!</p>
-    </div>
-    <div class="card-images">
-      <table class="table-center">
-        <caption>
-          Check out the card values below
-        </caption>
-        <tr>
-          <td><span>1 to 11 points</span></td>
-          <td><span>10 points</span></td>
-          <td><span>Nominal points</span></td>
-        </tr>
-        <tr>
-          <td><img src="/assets/images/help/aces.png" alt=""></td>
-          <td><img src="/assets/images/help/tens.png" alt=""></td>
-          <td><img src="/assets/images/help/nominal.png" alt=""></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        <div class="overlay-content">
+            <h1>BLACKJACK RULES</h1>
+            <img src="/assets/images/backgrounds/poker-table-cards-chips-vector-600.webp" alt="Placeholder Image">
+            <h2>To beat the dealer and <strong>win</strong>, you need to...</h2>
+            <p>Be dealt with a <strong>Blackjack*</strong> or hold more points in your hand than the dealer</p>
+            <p>The dealer will continue to take cards until they have 17 or more</p>
+            <p>Don't get more than 21 because you will bust and lose!</p>
+            <p>If you win you'll have 1 added to your score</p>
+            <p>If you win with <strong>Blackjack*</strong> you'll have 2 added to your score</p>
+            <p>And if the dealer wins they'll have 1 added to their score</p>
+            <p>Draw 2 cards of the same kind you can split and play 2 hands for twice the fun!</p>
+        </div>
+        <div class="card-images">
+            <table class="table-center">
+                <caption>
+                    Check out the card values below
+                </caption>
+                <tr>
+                    <td><span>1 to 11 points</span></td>
+                    <td><span>10 points</span></td>
+                    <td><span>Nominal points</span></td>
+                </tr>
+                <tr>
+                    <td><img src="/assets/images/help/aces.png" alt=""></td>
+                    <td><img src="/assets/images/help/tens.png" alt=""></td>
+                    <td><img src="/assets/images/help/nominal.png" alt=""></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
 
-      </table>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button class="close-btn" id="closeOverlayBtn">let's play!!!</button>
-        <p>* Blackjack is having 21 from the 2 cards you are dealt (eg Ace and King)</p>
-      </div>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="close-btn" id="closeOverlayBtn">play now</button>
+                <p>* Blackjack is having 21 from the 2 cards you are dealt (eg Ace and King)</p>
+            </div>
 
+        </div>
     </div>
-  </div>
-     
 
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
     <section id="blackjack-table" class="d-flex justify-content-center align-items-center">
         <!-- Add a container-fluid class to the div bootstrap created with ChatGTP for inspiration-->
         <div class="container-fluid svh-100 d-flex justify-content-center align-items-center">
