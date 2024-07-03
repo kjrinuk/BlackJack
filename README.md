@@ -34,6 +34,7 @@ We continually tweak and adjust this game to give the best BLACKjack experience 
 ------
 
 ## FAQ 
+![image](https://github.com/kjrinuk/BlackJack/assets/169760722/515b2333-2e50-4147-844a-6a6bf130d0f5)
 
 
 
