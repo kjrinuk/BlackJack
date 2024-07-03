@@ -270,12 +270,12 @@ function determineWinner() {
   } else if (dealer.total > 21 || player.total > dealer.total) {
     result = "WIN";
     updateScore("player");
-  } else if (player.total <= dealer.total) {
-    result = "LOSS";
-    updateScore("dealer");
   } else if (player.total === dealer.total) {
     result = "TIE";
     // updateScore('dealer');
+  } else if (player.total <= dealer.total) {
+    result = "LOSS";
+    updateScore("dealer");
   } else {
     console.log("Something has gone wrong!"); //internal bug checking we should oped this out to a modal in the deployment.
   }
@@ -297,11 +297,7 @@ function determineWinner() {
 
     if (result === "WIN") {
       playerResultCard.textContent = "WIN";
-      if (dealer.total > 21) {
-        dealerResultCard.textContent = "BUST";
-      } else {
-        dealerResultCard.textContent = "LOSS";
-      }
+      dealerResultCard.textContent = "LOSS";
     } else if (result === "LOSS") {
       playerResultCard.textContent = "LOSS";
       dealerResultCard.textContent = "WIN";
