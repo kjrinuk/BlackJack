@@ -20,11 +20,11 @@
 <body>
     <header>
         <!-- Add menu buttons for how to play and gambler aware support link -->
-        <div class="btn-group btn-primary container-fluid" role="group">
-            <!-- <button id='rules' data-type="rules-button" class="btn btn-info" type="button">How to Play</button> -->
+        <!-- <div class="btn-group btn-primary container-fluid" role="group"> -->
+            <div class="btn-group btn btn-success container-fluid">
+                <!-- <button id='rules' data-type="rules-button" class="btn btn-info" type="button">How to Play</button> -->
             <button id="rules" onclick="window.location='overlay.html';" data-type="rules-button" class="btn btn-info" type="button">How to Play</button>
-            <button id="rules" onclick="showOverlay()" data-type="rules-button" class="btn btn-info" type="button">How to Play</button>
-            <!-- <button id="openOverlayBtn" data-type="rules-button" class="btn btn-info" type="button">How to Play</button> -->
+            <button id="openOverlayBtn">How to Play</button>
             <button id="ga" onclick="window.open('https://www.gambleaware.org/')" data-type="gamble-aware-button" class="btn btn-info">Gamble Aware Advice</button>
         </div>
 
@@ -36,12 +36,8 @@
 
     </header>
     
- <!-- Button to open the overlay -->
-  <!-- <button id="openOverlayBtn">Open Overlay</button> -->
-
-  <!-- Rules Page overlay -->
-  <div id="overlay" class="overlay">
-    <!-- <span class="close-btn" id="closeOverlayBtn">&times;</span> -->
+   <!-- Rules Page overlay -->
+    <div id="overlay" class="overlay">
     <div class="overlay-content">
       <h1>BLACKJACK RULES</h1>
       <img src="/assets/images/backgrounds/poker-table-cards-chips-vector-600.webp" alt="Placeholder Image">
@@ -80,12 +76,13 @@
     <div class="row">
       <div class="col">
         <button class="close-btn" id="closeOverlayBtn">let's play!!!</button>
-        <p>* Blackjack is having 21 from the 2 cards you are dealt </p>
+        <p>* Blackjack is having 21 from the 2 cards you are dealt (eg Ace and King)</p>
       </div>
 
     </div>
   </div>
-    
+     
+
     
     
     

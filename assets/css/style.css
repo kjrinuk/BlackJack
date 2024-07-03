@@ -152,9 +152,28 @@ body{
   }
 }
 
-/*                                       */
-/* Beginning of styling for Rules Page Overlay */
-/*                                       */
+/*                                                              */
+/* Beginning of styling for Rules Page Overlay and Gamble Aware */
+/*                       Menu Options                           */             */
+/*                                                              */
+#rules,
+#ga {
+  margin: 7px;
+  padding: 7px;
+  width: auto;
+  background-color: white;
+  color: #388e3c;
+}
+
+#rules:hover {
+  color:white;
+  background-color: #388e3c;
+} 
+#ga:hover {
+  color: white;
+  background-color: #E1241C;
+}
+
 .overlay {
   display: none;
   position: fixed;
@@ -162,18 +181,18 @@ body{
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(/assets/images/SUITS-Cover.jpg);
+  background-image: url(/assets/images/help/background-dark-blue.png);
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.8;
+  opacity: 0.9;
   color: white;
   text-align: center;
   z-index: 99;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .overlay-content {
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .close-btn {

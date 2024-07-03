@@ -12,6 +12,42 @@ window.onload = function () {
   }, 1000);
 };
 
+// 
+// Handling of the Game Rules overlay
+//
+
+// Get the overlay element
+let overlay = document.getElementById("overlay");
+
+// Get the button that opens the overlay
+let openBtn = document.getElementById("openOverlayBtn");
+
+// Get the <span> element that closes the overlay
+let closeBtn = document.getElementById("closeOverlayBtn");
+
+// When the user clicks the button, open the overlay 
+openBtn.onclick = function () {
+  overlay.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the overlay
+closeBtn.onclick = function () {
+  overlay.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the overlay, close it
+window.onclick = function (event) {
+  if (event.target == overlay) {
+    overlay.style.display = "none";
+  }
+}
+
+//
+// End of code for handling Game Rules overlay
+//
+
+
+
 /**
  * 1. Create a deck of cards
  * 2. Shuffle the deck
@@ -121,7 +157,7 @@ class Role {
 const dealer = new Role('Dealer');
 const player = new Role('Player');
 let splitHands = []; // Array to store split hands #
-let currentSplitHand = 0;// Index of current split hand #
+let currentSplitHand = 0; // Index of current split hand #
 let gameStarted = false;
 let playerTurn = true;
 
@@ -171,13 +207,13 @@ function updateUI() {
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
   //  Player Cards defined and styled here --------------------------------------------------Split button display
-/*  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-    document.getElementById('split-button').style.display = 'inline-block';
+  /*  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+      document.getElementById('split-button').style.display = 'inline-block';
 
-  } else {
-    document.getElementById('split-button').style.display = 'none';
-  }
-*/
+    } else {
+      document.getElementById('split-button').style.display = 'none';
+    }
+  */
   idIterator = 1;
   player.hand.forEach(card => {
     const cardDiv = document.createElement('div');
@@ -317,7 +353,7 @@ document.getElementById('deal-button').addEventListener('click', () => {
 
     // ensure dealer value is still hidden until player has finished his go
     document.getElementById("dealer-cards-value").style.display = "none";
-    
+
   }
 
 });
@@ -349,7 +385,7 @@ document.getElementById('stand-button').addEventListener('click', () => {
     // update and reveal dealer card value
     document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
     document.getElementById("dealer-cards-value").style.display = "block";
-    
+
 
     updateUI();
     determineWinner();
@@ -359,64 +395,10 @@ document.getElementById('stand-button').addEventListener('click', () => {
 // split button functionality
 
 document.getElementById('split-button').addEventListener('click', () => {
-      if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-        splitCards(); // split cards if they are the same
-        updateUI(); // update UI to show split cards
-      }});
-
-    updateUI();
-
-
-    // ***************************************************************************
-// *                           Menu Buttons                                  *
-// ***************************************************************************
-showOverlay() {
-this.addEventListener('click', () => { 
-  alert("lets see the overlay");
-});
-}
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  document.getElementById('rules').addEventListener('click', () => {
-    alert('You hit the Rule Button');
-//     let myWindow = window.open("", "MsgWindow", "width=600,height=300");
-//     myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
-
-    //
-    // JavaScript to handle the Game Rules overlay
-    //
-    // Get the overlay element
-    let overlay = document.getElementById("overlay");
-
-    // Get the button that opens the overlay
-    let openBtn = document.getElementById("openOverlayBtn");
-
-    // Get the <span> element that closes the overlay
-    let closeBtn = document.getElementById("closeOverlayBtn");
-
-    // When the user clicks the button, open the overlay 
-    openBtn.onclick = function () {
-      overlay.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the overlay
-    closeBtn.onclick = function () {
-      overlay.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the overlay, close it
-    window.onclick = function (event) {
-      if (event.target == overlay) {
-        overlay.style.display = "none";
-      }
-    }
-
-      });
- 
+  if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+    splitCards(); // split cards if they are the same
+    updateUI(); // update UI to show split cards
+  }
 });
 
-    //
-    // End of code for handling Game Rules overlay
-    //
+updateUI();
