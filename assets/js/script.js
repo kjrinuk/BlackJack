@@ -254,6 +254,9 @@ function determineWinner() {
   } else if (player.total <= dealer.total) {
     result = 'LOSS';
     updateScore('dealer');
+  } else if (player.total === dealer.total) {
+    result = 'TIE';
+    // updateScore('dealer');
   } else {
     console.log('Something has gone wrong!'); //internal bug checking we should oped this out to a modal in the deployment.
   }
@@ -284,7 +287,11 @@ function determineWinner() {
     } else if (result === 'BUST') {
       playerResultCard.textContent = 'BUST';
       dealerResultCard.textContent = 'WIN';
+    }else if (result === 'TIE') {
+      playerResultCard.textContent = 'PUSH';
+      dealerResultCard.textContent = 'PUSH';
     }
+
 
     document.getElementById('player-cards').appendChild(playerResultCard);
     document.getElementById('dealer-cards').appendChild(dealerResultCard);
@@ -340,7 +347,12 @@ document.getElementById('deal-button').addEventListener('click', () => {
     // ensure dealer value is still hidden until player has finished his go
     document.getElementById("dealer-cards-value").style.display = "none";
     
-  }
+  } else if (player.hand.length === 2 && playerTurn && player.total === 21) {
+    playerTurn = false;
+    updateUI();
+    determineWinner();
+    }
+
 
 });
 
@@ -353,7 +365,11 @@ document.getElementById('hit-button').addEventListener('click', () => {
     document.getElementById("player-cards-value").innerHTML = player.total.toString();
 
     updateUI();
-    if (player.total > 21) {
+    if (player.hand.length === 2 && playerTurn && player.total === 21) {
+      playerTurn = false;
+      updateUI();
+      determineWinner();
+      } else if (player.total > 21) {
       determineWinner();
     }
   }
@@ -385,5 +401,13 @@ document.getElementById('split-button').addEventListener('click', () => {
         splitCards(); // split cards if they are the same
         updateUI(); // update UI to show split cards
       }});
+
+if (playerTurn && player.total === 21) {
+  playerTurn = false;
+  console.log('we hit the if statement');
+  updateUI();
+  determineWinner();
+  }
+
 
     updateUI();
