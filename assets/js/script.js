@@ -120,6 +120,8 @@ class Role {
 
 const dealer = new Role('Dealer');
 const player = new Role('Player');
+let splitHands = []; // Array to store split hands #
+let currentSplitHand = 0;// Index of current split hand #
 let gameStarted = false;
 let playerTurn = true;
 
@@ -169,12 +171,13 @@ function updateUI() {
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
   //  Player Cards defined and styled here --------------------------------------------------Split button display
-  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+/*  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
     document.getElementById('split-button').style.display = 'inline-block';
 
   } else {
     document.getElementById('split-button').style.display = 'none';
   }
+*/
   idIterator = 1;
   player.hand.forEach(card => {
     const cardDiv = document.createElement('div');
@@ -197,25 +200,29 @@ function updateUI() {
     document.getElementById(`player-card-${i}`).style.left = `${15+(8*i)}%`;
     document.getElementById(`player-card-${i}`).style.transform = `rotate(-${player.hand.length*(player.hand.length - i)}deg)`;
   }
-}
 
-// // function to check both cards are the same and then split them into two hands
-// // if both cards are the same and player has two cards
-// function checkForBlackjack() {
-//   if (player.hand.length === 2 && player.total === 21) {
-//     const card1 = player.hand[0][0];
-//     const card2 = player.hand[1][0];
-//     const cardType = ["jack", "queen", "king", 10];
-//     if (
-//       cardType.includes(card1) &&
-//       cardType.includes(card2) &&
-//       card1 === card2
-//     ) {
-//       console.log("Player has a blackjack!");
-//       // logic for handling a blackjack goes here
-//     }
-//   }
-// }
+  // splithands length will need container to display split hands
+  if (splitHands.length > 0) {
+    const splitHandsContainer = document.getElementById('split-hands-container');
+    splitHandsContainer.innerHTML = '';
+    splitHands.forEach((hand, index) => {
+      const splitHandDiv = document.createElement('div');
+      splitHandDiv.className = 'split-hand';
+      hand.hand.forEach(card => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card-image';
+        cardDiv.style = `
+        background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
+        width: 60px;
+        height: 90px;
+        position: absolute; 
+        `;
+        splitHandDiv.appendChild(cardDiv);
+      });
+      splitHandsContainer.appendChild(splitHandDiv);
+    });
+  }
+}
 
 // --------------------------------------------function to split cards if they are the same
 function splitCards() {
@@ -310,34 +317,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//   let buttons = document.getElementsByTagName("button");
-
-//   for (let button of buttons) {
-
-//     button.addEventListener("click", function() {
-//           if (this.getAttribute("data-type") === "rules-button") {
-//               alert("You clicked Rules!");
-//           } else if (this.getAttribute("data-type") === "rules-button"){
-//               let gameType = this.getAttribute("data-type");
-//               alert(`You clicked ${gameType}`);
-//           }
-//       });
-//   }
-// });
-
-
-
-
-// document.getElementById('rules-button').addEventListener('click', () => {
-//       alert('You hit the Rule Button');
-//     }
-
-//     document.getElementById('gamble-aware-button').addEventListener('click', () => {
-//         alert("You hit the Rule Button");
-//       }
-
-
-
 // Buttons for game play, hit, stand, deal, split
 document.getElementById('deal-button').addEventListener('click', () => {
   if (!gameStarted) {
@@ -399,7 +378,7 @@ document.getElementById('stand-button').addEventListener('click', () => {
 
 document.getElementById('split-button').addEventListener('click', () => {
       if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-
+        splitCards(); // split cards if they are the same
         updateUI(); // update UI to show split cards
       }});
 
