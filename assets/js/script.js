@@ -180,32 +180,34 @@ function updateScore(winner) {
 
 // Checking for two values of ten when player gets first two tens in their hand
 function checkForTen() {
-  if(player.hand.length !== 0 && player.splitHands.length === 0){
-    let cardOne = player.hand[0][0];
-  let cardTwo = player.hand[1][0];
-  switch (cardOne) {
-    case 'jack':
-    case 'queen':
-    case 'king':
-      cardOne = 10;
-      break;
-  }
-
-    switch (cardTwo) {
+  if (player.hand !== undefined){
+    if(player.hand.length !== 0 && player.splitHands.length === 0){
+      let cardOne = player.hand[0][0];
+    let cardTwo = player.hand[1][0];
+    switch (cardOne) {
       case 'jack':
       case 'queen':
       case 'king':
-        cardTwo = 10;
+        cardOne = 10;
         break;
     }
-    
-    if (cardOne === 10 && cardTwo === 10) {
-      return true
-    } else {
-      return false
+
+      switch (cardTwo) {
+        case 'jack':
+        case 'queen':
+        case 'king':
+          cardTwo = 10;
+          break;
+      }
+      
+      if (cardOne === 10 && cardTwo === 10) {
+        return true
+      } else {
+        return false
+      }
     }
   }
-  }
+}
 
 // Drawn Cards defined and styled here
 function updateUI() {
@@ -322,12 +324,6 @@ function updateUI() {
     }
   }
 
-  // Reveal play second hand button
-  if (player.hand.length === 2 && player.splitHands.length !== 0) {
-    document.getElementById('play-second-hand').style.display = "inline-block";
-  } else {
-    document.getElementById('play-second-hand').style.display = "none"
-  }
 } 
 
 // --------------------------------------------function to split cards if they are the same
@@ -405,6 +401,14 @@ function determineWinner() {
   }
 
   gameStarted = false;
+
+  // Important for split scenario
+  if (!gameStarted && player.splitHands.length !== 0) {
+    document.getElementById('play-second-hand').style.display = "inline-block";
+    document.getElementById('hit-button').style.display = "none";
+  } else {
+    document.getElementById('play-second-hand').style.display = "none";
+  }
 }
 
 // Buttons for game play, hit, stand, deal, split
@@ -437,6 +441,8 @@ document.getElementById("deal-button").addEventListener("click", () => {
 });
 
 document.getElementById("hit-button").addEventListener("click", () => {
+  document.getElementById("player-hand-initial").style.display = "block";
+  document.getElementById("player-hand-second").style.display = "none";
   if (gameStarted && playerTurn) {
     player.addCard(deck.selectCardsFromDeck(1)[0]);
     //hide dealer card value again
@@ -461,19 +467,6 @@ document.getElementById("hit-button").addEventListener("click", () => {
     document.getElementById("dealer-cards-value").style.display = "block";
   }
 
-  /*if (document.getElementsByClassName('card').length === 2 && player.splitHands.length === 1) {
-    player.splitHands.push(deck.selectCardsFromDeck(1)[0])
-    // hide result cards
-    document.getElementsByClassName("card")[0].style.display = "none";
-    //hide dealer card value again
-    document.getElementById("dealer-cards-value").style.display = "none";
-    dealer.hand = [];
-    if (!dealer.hand.length === 2) {
-      dealer.hand.push(selectCardsFromDeck(2));
-    } else {
-      dealer.hand.push(selectCardsFromDeck(1));
-    }
-  }*/
 
 });
 // Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
@@ -513,20 +506,19 @@ if (playerTurn && player.total === 21) {
 
 // play second hand button functionality
 
-/*document.getElementById('play-second-hand').addEventListener('click', () => {
-  if (!gameStarted && !playerTurn && player.splitHands.length !== 0) {
-    document.getElementById('play-second-hand').style.display = "none"
-    
-    splitCards(); // split cards if they are the same
-    updateUI(); // update UI to show split cards
-  }});*/
+document.getElementById('play-second-hand').addEventListener('click', () => {
+  document.getElementById('hit-button').style.display = "inline-block";
+  // Change focus from initial hand to second hand during split scenario 
+  document.getElementById('player-hand-initial').style.display = "none";
+  player.hand = player.splitHands;
+  player.total = player.splitTotal;
+  player.splitHands = [];
+  player.splitTotal = 0;
+  gameStarted = true;
+  playerTurn = true;
+  document.getElementById('play-second-hand').style.display = "none";
+});
 
-/*if (playerTurn && player.total === 21) {
-playerTurn = false;
-console.log("we hit the if statement");
-updateUI();
-determineWinner();
-}*/
 function resetDisplayedCards() {
   player.splitHands = [];
   player.splitTotal = 0;
