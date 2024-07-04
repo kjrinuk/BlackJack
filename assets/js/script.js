@@ -21,31 +21,26 @@ let overlay = document.getElementById("overlay");
 // Get the button that opens the overlay
 let openBtn = document.getElementById("openOverlayBtn");
 
-// Get the <span> element that closes the overlay
+// Get the element that closes the overlay
 let closeBtn = document.getElementById("closeOverlayBtn");
 
 // When the user clicks the button, open the overlay 
 openBtn.onclick = function () {
   overlay.style.display = "block";
 }
-
 // When the user clicks on <span> (x), close the overlay
 closeBtn.onclick = function () {
   overlay.style.display = "none";
 }
-
 // When the user clicks anywhere outside of the overlay, close it
 window.onclick = function (event) {
   if (event.target == overlay) {
     overlay.style.display = "none";
   }
 }
-
 //
 // End of code for handling Game Rules overlay
 //
-
-
 
 /**
  * 1. Create a deck of cards
@@ -388,9 +383,9 @@ document.getElementById("deal-button").addEventListener("click", () => {
     alert("You Just Hit 21! Black Jack Baby! Stand or Hit to continue.");
     updateUI();
     determineWinner();
-  } else if (gameStarted && playerTurn && player.total < 21) { 
+  } else if (gameStarted && playerTurn && player.total < 21) {
     alert("You must finish the current game before starting a new one.");
-  } 
+  }
 });
 
 document.getElementById("hit-button").addEventListener("click", () => {
@@ -452,15 +447,15 @@ if (playerTurn && player.total === 21) {
   updateUI();
   determineWinner();
 }
+
 function resetDisplayedCards() {
   player.splitHands = [];
   player.splitTotal = 0;
   document.getElementById("player-hand-second").style.display =
-  "none";
+    "none";
   document.getElementById("split-hand-value").style.display = "none";
 
 }
-
 
 
 

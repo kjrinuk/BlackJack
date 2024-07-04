@@ -228,15 +228,15 @@ body{
   /* position: absolute; */
   height: 40px;
   width: 180px;
-  top: 20px;
-  right: 30px;
+  /* top: 20px;
+  right: 30px; */
   font-size: 20px;
   cursor: pointer;
   border: 0;
   color: white;
   background-color: #388e3c;
   border-radius: 15px;
-  margin-top: 5px;
+  margin-top: 15px;
 }
 
 .close-btn:hover,
