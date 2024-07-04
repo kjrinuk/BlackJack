@@ -139,6 +139,36 @@ function updateScore(winner) {
     document.getElementById('dealer-score').textContent = dealerScore;
   }
 }
+
+// Checking for two values of ten when player gets first two tens in their hand
+function checkForTen() {
+  if(player.hand.length !== 0 && player.splitHands.length === 0){
+    let cardOne = player.hand[0][0];
+  let cardTwo = player.hand[1][0];
+  switch (cardOne) {
+    case 'jack':
+    case 'queen':
+    case 'king':
+      cardOne = 10;
+      break;
+  }
+
+    switch (cardTwo) {
+      case 'jack':
+      case 'queen':
+      case 'king':
+        cardTwo = 10;
+        break;
+    }
+    
+    if (cardOne === 10 && cardTwo === 10) {
+      return true
+    } else {
+      return false
+    }
+  }
+  }
+
 // Drawn Cards defined and styled here
 function updateUI() {
   const dealerCards = document.getElementById('dealer-cards');
@@ -172,7 +202,7 @@ function updateUI() {
     document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
   }
   //  Player Cards defined and styled here --------------------------------------------------Split button display
-  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
     document.getElementById('split-button').style.display = 'inline-block';
 
   } else {
@@ -227,7 +257,7 @@ function updateUI() {
     document.getElementById('player-hand-initial').style.display = 'block';
     document.getElementById('player-hand-second').style.display = 'block';
 
-    if(player.hand === 1){
+    if(player.hand.length === 1){
       document.getElementById('player-cards-value').innerText = (player.total / 2);
     }
 
@@ -243,9 +273,10 @@ function updateUI() {
 
 // --------------------------------------------function to split cards if they are the same
 function splitCards() {
-  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
     player.splitHands.push(player.hand[1]);
     player.splitTotal = totalValue(player.splitHands);
+    console.log(player.hand);
     player.hand.pop();
     updateUI();
   }
@@ -387,6 +418,21 @@ document.getElementById('hit-button').addEventListener('click', () => {
     document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
     document.getElementById("dealer-cards-value").style.display = "block";
   }
+
+  if (!playerTurn && player.splitHands.length === 1) {
+    player.splitHands.push(selectCardsFromDeck(1))
+    //hide dealer card value again
+    document.getElementById("dealer-cards-value").style.display = "none";
+    // hide result cards
+    document.getElementsByClassName("card").style.display = "none";
+    dealer.hand = [];
+    if (!dealer.hand.length === 2) {
+      dealer.hand.push(selectCardsFromDeck(2));
+    } else {
+      dealer.hand.push(selectCardsFromDeck(1));
+    }
+  }
+
 });
 // Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
 document.getElementById('stand-button').addEventListener('click', () => {
@@ -411,7 +457,7 @@ document.getElementById('stand-button').addEventListener('click', () => {
 // split button functionality
 
 document.getElementById('split-button').addEventListener('click', () => {
-      if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+      if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
         splitCards(); // split cards if they are the same
         updateUI(); // update UI to show split cards
       }});
@@ -424,4 +470,4 @@ if (playerTurn && player.total === 21) {
   }
 
 
-    updateUI();
+    updateUI()
