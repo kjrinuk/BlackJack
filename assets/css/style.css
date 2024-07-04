@@ -1,7 +1,7 @@
 body{
   height: 100vh;
   margin: 0;
-  background-color: green;
+  background: green url('../images/background-new.jpg') no-repeat center / cover;;
   font-family: Arial, sans-serif;
 }
 .hidden {
@@ -110,14 +110,13 @@ body{
 }
 
 #timeSpent {
-  border:3px solid rgb(0, 0, 0);
-  background-color: #E1241C;
-  border-radius: 5px;
-  position: absolute;
-  color: thistle;
-  /* inset: 1px 1px 2px 10px; */
-  left: 2svw;
-  top: 100svh;
+  /* border:3px solid rgba(0, 0, 0, 1); */
+  /* background-color: rgba(225,36,28,0.5); */
+  /* border-radius: 5px; */
+  position: relative;
+  color: rgba(255, 255, 255, 1);
+  left: 0.1svw;
+  top: 2svh;
   padding: 3px;
   font-size: smaller;
 }
@@ -153,3 +152,129 @@ body{
     height: 550px
   }
 }
+
+/*                                                              */
+/* Beginning of styling for Rules Page Overlay and Gamble Aware */
+/*                       Menu Options                           */             */
+/*                                                              */
+#openOverlayBtn,
+#ga {
+  margin: 7px;
+  padding: 7px;
+  width: auto;
+  background-color: white;
+  color: #388e3c;
+}
+
+
+#openOverlayBtn:hover {
+  background-color:white;
+  color: #388e3c;
+} 
+#ga:hover {
+  color: white;
+  background-color: #E1241C;
+}
+
+.overlay {
+  display: none;
+  animation: appear 2s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(/assets/images/help/background-red.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  color: white;
+  text-align: center;
+  z-index: 99;
+
+  /* padding: 20px; */
+}
+
+@keyframes vanish {
+  from {
+    display: block;
+    opacity: 1;
+  }
+  to {
+    display: none;
+    opacity: 0;
+  }
+}
+
+.overlay[close] {
+  display: none;
+  animation: vanish 2s;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+.overlay-content {
+  margin-top: 1%;
+}
+
+.close-btn {
+  /* position: absolute; */
+  height: 40px;
+  width: 180px;
+  top: 20px;
+  right: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 0;
+  color: white;
+  background-color: #388e3c;
+  border-radius: 15px;
+  margin-top: 5px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #388e3c;
+  background-color: white;
+}
+
+.table-center {
+  margin-left: auto;
+  margin-right: auto;
+  border-style: ridge;
+  padding: 10px 20px 10px 20px;
+}
+
+caption {
+  caption-side: top;
+  text-align: left;
+  padding-bottom: 10px;
+  font-weight: bold;
+  color: gold;
+}
+
+strong {
+  color: darkorange;
+  font-size: 50px;
+}
+
+h1 {
+  text-decoration-line: underline;
+  color: gold;
+}
+
+h2 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+/*                                       */
+/* End of styling for Rules Page Overlay */
+/*                                       */
