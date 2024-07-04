@@ -87,33 +87,33 @@
         <!-- Add a container-fluid class to the div bootstrap created with ChatGTP for inspiration-->
         <div class="container-fluid svh-100 d-flex justify-content-center align-items-center">
             <div class="blackjack-table p-4 rounded-3">
-                <div class="row mb-4">
+                <div class="row mb-4 cards-box">
                     <div class="col text-center">
                         <div id="dealer-cards-value" class="text-white"></div>
                         <div id="dealer-cards" class="card-container d-flex justify-content-center gap-2 relative">
                         </div>
-                        <div class="text-white">Score: <span id="dealer-score">0</span></div>
+                        <div class="text-white">Dealer Score: <span id="dealer-score">0</span></div>
                     </div>
                 </div>
-                <div class="row mb-4">
+                <div class="row mb-4 cards-box">
                     <div id="player-hand-initial" class="col text-center">
                         <div id="player-cards-value" class="text-white text-center"></div>
                         <div id="player-cards" class="card-container d-flex justify-content-center gap-2 relative">
                         </div>
-                        <div class="text-white">Score: <span id="player-score">0</span></div>
+                        <div class="text-white">Player Score: <span id="player-score">0</span></div>
                     </div>
                     <div id="player-hand-second" class="col text-center hidden" >
                         <div id="split-hand-value" class="text-white text-center"></div>
                         <div id="split-hands-container" class="card-container d-flex justify-content-center gap-2 relative"></div>
-                        <!-- <div id="reveal-score" class="text-white hidden">Score: <span id="player-score">0</span></div> -->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col text-center">
-                        <button id="deal-button" class="btn btn-primary mb-2">Deal</button>
-                        <button id="split-button" class="btn btn-danger mb-2 hidden">Split</button>
-                        <button id="hit-button" class="btn btn-secondary mb-2">Hit</button>
-                        <button id="stand-button" class="btn btn-light mb-2">Stand</button>
+                        <button id="deal-button" class="btn btn-primary mb-2"><i class="fa-solid fa-user"></i><br>Deal</button>
+                        <button id="split-button" class="btn btn-danger mb-2 hidden"><i class="fa-solid fa-arrows-split-up-and-left"></i><br>Split</button>
+                        <button id="hit-button" class="btn btn-secondary mb-2"><i class="fa-solid fa-plus"></i><br>Hit</button>
+                        <button id="play-second-hand" class="btn btn-secondary mb-2 hidden"><i class="fa-solid fa-chevron-right"></i><br>Next</button>
+                        <button id="stand-button" class="btn btn-light mb-2"><i class="fa-solid fa-hand"></i><br>Stand</button>
                     </div>
                 </div>
                 <div class="row">

@@ -172,6 +172,38 @@ function updateScore(winner) {
     document.getElementById("dealer-score").textContent = dealerScore;
   }
 }
+
+// Checking for two values of ten when player gets first two tens in their hand
+function checkForTen() {
+  if (player.hand !== undefined){
+    if(player.hand.length !== 0 && player.splitHands.length === 0){
+      let cardOne = player.hand[0][0];
+    let cardTwo = player.hand[1][0];
+    switch (cardOne) {
+      case 'jack':
+      case 'queen':
+      case 'king':
+        cardOne = 10;
+        break;
+    }
+
+      switch (cardTwo) {
+        case 'jack':
+        case 'queen':
+        case 'king':
+          cardTwo = 10;
+          break;
+      }
+      
+      if (cardOne === 10 && cardTwo === 10) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+}
+
 // Drawn Cards defined and styled here
 function updateUI() {
   const dealerCards = document.getElementById("dealer-cards");
@@ -209,8 +241,9 @@ function updateUI() {
     }deg)`;
   }
   //  Player Cards defined and styled here --------------------------------------------------Split button display
-  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-    document.getElementById("split-button").style.display = "inline-block";
+  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
+    document.getElementById('split-button').style.display = 'inline-block';
+
   } else {
     document.getElementById("split-button").style.display = "none";
   }
@@ -251,13 +284,12 @@ function updateUI() {
     splitHandsContainer.style.height = "90px";
 
     positionIterator = 1;
-    player.splitHands.forEach((card) => {
-      const cardDiv = document.createElement("div");
-      cardDiv.className = "card-image";
-      cardDiv.style = `
-        background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${
-        card[1]
-      }.svg') no-repeat center / cover;
+    player.splitHands.forEach(card => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card-image';
+        console.log(card);
+        cardDiv.style = `
+        background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
         width: 60px;
         height: 90px;
         position: absolute; 
@@ -270,21 +302,28 @@ function updateUI() {
       positionIterator += 1;
     });
 
-    document.getElementById("player-hand-initial").style.display =
-      "inline-block";
-    document.getElementById("player-hand-second").style.display =
-      "inline-block";
-    // document.getElementById('reveal-score').style.display = 'block';
+    document.getElementById('player-hand-initial').style.display = 'block';
+    document.getElementById('player-hand-second').style.display = 'block';
+
+    if(player.hand.length === 1){
+      document.getElementById('player-cards-value').innerText = (player.total / 2);
+    }
 
     document.getElementById("split-hand-value").innerHTML =
       player.splitTotal.toString();
     document.getElementById("split-hand-value").style.display = "block";
+
+    // Start to play for second hand
+    if ((document.getElementsByClassName('card').length) === 2) {
+      document.getElementById("player-hand-initial").style.display = 'none';
+    }
   }
-}
+
+} 
 
 // --------------------------------------------function to split cards if they are the same
 function splitCards() {
-  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
+  if (player.hand.length === 2 && player.splitHands.length === 0 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
     player.splitHands.push(player.hand[1]);
     player.splitTotal = totalValue(player.splitHands);
     player.hand.pop();
@@ -357,6 +396,14 @@ function determineWinner() {
   }
 
   gameStarted = false;
+
+  // Important for split scenario
+  if (!gameStarted && player.splitHands.length !== 0) {
+    document.getElementById('play-second-hand').style.display = "inline-block";
+    document.getElementById('hit-button').style.display = "none";
+  } else {
+    document.getElementById('play-second-hand').style.display = "none";
+  }
 }
 
 // Buttons for game play, hit, stand, deal, split
@@ -389,6 +436,8 @@ document.getElementById("deal-button").addEventListener("click", () => {
 });
 
 document.getElementById("hit-button").addEventListener("click", () => {
+  document.getElementById("player-hand-initial").style.display = "block";
+  document.getElementById("player-hand-second").style.display = "none";
   if (gameStarted && playerTurn) {
     player.addCard(deck.selectCardsFromDeck(1)[0]);
     //hide dealer card value again
@@ -406,6 +455,14 @@ document.getElementById("hit-button").addEventListener("click", () => {
       determineWinner();
     }
   }
+
+  if (player.total > 21) {
+    // update and reveal dealer card value
+    document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+    document.getElementById("dealer-cards-value").style.display = "block";
+  }
+
+
 });
 // Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
 document.getElementById("stand-button").addEventListener("click", () => {
@@ -429,17 +486,11 @@ document.getElementById("stand-button").addEventListener("click", () => {
 
 // split button functionality
 
-document.getElementById("split-button").addEventListener("click", () => {
-  if (
-    gameStarted &&
-    playerTurn &&
-    player.hand.length === 2 &&
-    player.hand[0][0] === player.hand[1][0]
-  ) {
-    splitCards(); // split cards if they are the same
-    updateUI(); // update UI to show split cards
-  }
-});
+document.getElementById('split-button').addEventListener('click', () => {
+      if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
+        splitCards(); // split cards if they are the same
+        updateUI(); // update UI to show split cards
+      }});
 
 if (playerTurn && player.total === 21) {
   playerTurn = false;
@@ -447,6 +498,21 @@ if (playerTurn && player.total === 21) {
   updateUI();
   determineWinner();
 }
+
+// play second hand button functionality
+
+document.getElementById('play-second-hand').addEventListener('click', () => {
+  document.getElementById('hit-button').style.display = "inline-block";
+  // Change focus from initial hand to second hand during split scenario 
+  document.getElementById('player-hand-initial').style.display = "none";
+  player.hand = player.splitHands;
+  player.total = player.splitTotal;
+  player.splitHands = [];
+  player.splitTotal = 0;
+  gameStarted = true;
+  playerTurn = true;
+  document.getElementById('play-second-hand').style.display = "none";
+});
 
 function resetDisplayedCards() {
   player.splitHands = [];
@@ -458,6 +524,4 @@ function resetDisplayedCards() {
 }
 
 
-
-
-updateUI();
+    updateUI()

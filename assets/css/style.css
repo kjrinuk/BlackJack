@@ -74,6 +74,37 @@ body{
   /* Move the button up by ?*/
 }
 
+#deal-button {
+  background: #31A9FF;
+  border: none;
+  color: white;
+}
+
+#hit-button {
+  background: #29D36E;
+  border: none;
+  color: white;
+}
+
+#play-second-hand {
+  background: purple;
+  border: none;
+  color: white;
+}
+
+
+#stand-button {
+  background: #FF5442;
+  border: none;
+  color: white;
+}
+
+#stand-button {
+  background: #FF5442;
+  border: none;
+  color: white;
+}
+
 .heading {
 
   text-align: center;
@@ -134,6 +165,12 @@ body{
   #blackjack-table {
     background-size : 150%;
     height: 550px
+  }
+
+  /* How cards appear */
+  .cards-box {
+    display: inline-block;
+    margin: 30px 50px;
   }
 }
 
