@@ -2,13 +2,12 @@
 // On window load timer
 window.onload = function () {
   let secondsSpent = 0;
-  const display = document.getElementById('timeSpent');
-
+  const display = document.getElementById("timeSpent");
   setInterval(() => {
     secondsSpent++;
     let minutes = Math.floor(secondsSpent / 60);
     let seconds = secondsSpent % 60;
-    display.textContent = `Play Timer: ${minutes}:${seconds}`;
+    display.textContent = `Timer: ${minutes}:${seconds}`;
   }, 1000);
 };
 
@@ -39,7 +38,7 @@ window.onload = function () {
  * 24. The game is started
  * 25. The game is stopped
  * 26. The game is continued
- * 
+ *
  */
 
 // Defining or instantiating Card-Deck
@@ -58,13 +57,16 @@ const deck = {
   selectCardsFromDeck(amount) {
     const selectedCards = [];
     for (let i = 1; i <= amount; i++) {
-      const randomCard = this.remaining[Math.floor(Math.random() * this.remaining.length)];
+      const randomCard =
+        this.remaining[Math.floor(Math.random() * this.remaining.length)];
       selectedCards.push(randomCard);
       // Remove selected card from the remaining deck
-      this.remaining = this.remaining.filter(card => !(card[0] === randomCard[0] && card[1] === randomCard[1]));
+      this.remaining = this.remaining.filter(
+        (card) => !(card[0] === randomCard[0] && card[1] === randomCard[1])
+      );
     }
     return selectedCards;
-  }
+  },
 };
 
 deck.resetDeck();
@@ -85,17 +87,17 @@ function totalValue(hand) {
         total += hand[i][0];
         break;
       case 10:
-      case 'jack':
-      case 'queen':
-      case 'king':
+      case "jack":
+      case "queen":
+      case "king":
         total += 10;
         break;
-      case 'ace':
+      case "ace":
         aces += 1; // total += 1 (if less than 10) || 11 (if more than 10)
         total += 11; //
         break;
       default:
-        console.log('Something has gone wrong!');
+        console.log("Something has gone wrong!");
     }
   }
   while (total > 21 && aces) {
@@ -118,11 +120,11 @@ class Role {
   }
 }
 
-const dealer = new Role('Dealer');
-const player = new Role('Player');
+const dealer = new Role("Dealer");
+const player = new Role("Player");
 player.splitHands = []; // Array to store split hands in player object ONLY
 player.splitTotal = 0; // For player object ONLY
-let currentSplitHand = 0;// Index of current split hand #
+let currentSplitHand = 0; // Index of current split hand #
 let gameStarted = false;
 let playerTurn = true;
 
@@ -131,25 +133,25 @@ let playerScore = 0;
 let dealerScore = 0;
 
 function updateScore(winner) {
-  if (winner === 'player') {
+  if (winner === "player") {
     playerScore += 1;
-    document.getElementById('player-score').textContent = playerScore;
-  } else if (winner === 'dealer') {
+    document.getElementById("player-score").textContent = playerScore;
+  } else if (winner === "dealer") {
     dealerScore += 1;
-    document.getElementById('dealer-score').textContent = dealerScore;
+    document.getElementById("dealer-score").textContent = dealerScore;
   }
 }
 // Drawn Cards defined and styled here
 function updateUI() {
-  const dealerCards = document.getElementById('dealer-cards');
-  const playerCards = document.getElementById('player-cards');
-  dealerCards.innerHTML = '';
-  playerCards.innerHTML = '';
+  const dealerCards = document.getElementById("dealer-cards");
+  const playerCards = document.getElementById("player-cards");
+  dealerCards.innerHTML = "";
+  playerCards.innerHTML = "";
 
   let idIterator = 1;
-  dealer.hand.forEach(card => {
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'card-image';
+  dealer.hand.forEach((card) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "card-image";
     cardDiv.id = `dealer-card-${idIterator}`;
     cardDiv.style = `
     background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
@@ -163,26 +165,29 @@ function updateUI() {
   });
 
   if (dealer.hand.length > 0) {
-    document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/back-card.jpg') no-repeat center / cover`; //Override styling to hide dealer's first card
-    dealerCards.innerHTML += `<div id="spacer"></div>` // Required to provide sufficient space to display cardDiv with absolute positioning
-  };
+    document.getElementById(
+      "dealer-card-1"
+    ).style.background = `url('assets/images/Card-images/back-card.jpg') no-repeat center / cover`; //Override styling to hide dealer's first card
+    dealerCards.innerHTML += `<div id="spacer"></div>`; // Required to provide sufficient space to display cardDiv with absolute positioning
+  }
 
   for (let i = 1; i <= dealer.hand.length; i++) {
-    document.getElementById(`dealer-card-${i}`).style.left = `${15+(8*i)}%`;
-    document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${5*(dealer.hand.length - i)}deg)`;
+    document.getElementById(`dealer-card-${i}`).style.left = `${15 + 8 * i}%`;
+    document.getElementById(`dealer-card-${i}`).style.transform = `rotate(-${
+      5 * (dealer.hand.length - i)
+    }deg)`;
   }
   //  Player Cards defined and styled here --------------------------------------------------Split button display
   if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-    document.getElementById('split-button').style.display = 'inline-block';
-
+    document.getElementById("split-button").style.display = "inline-block";
   } else {
-    document.getElementById('split-button').style.display = 'none';
+    document.getElementById("split-button").style.display = "none";
   }
 
   idIterator = 1;
-  player.hand.forEach(card => {
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'card-image';
+  player.hand.forEach((card) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "card-image";
     cardDiv.id = `player-card-${idIterator}`;
     cardDiv.style = `
     background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
@@ -195,40 +200,53 @@ function updateUI() {
     playerCards.appendChild(cardDiv);
   });
 
-  if (player.hand.length > 0) {playerCards.innerHTML += `<div id="spacer"></div>`};
+  if (player.hand.length > 0) {
+    playerCards.innerHTML += `<div id="spacer"></div>`;
+  }
 
   for (let i = 1; i <= player.hand.length; i++) {
-    document.getElementById(`player-card-${i}`).style.left = `${15+(8*i)}%`;
-    document.getElementById(`player-card-${i}`).style.transform = `rotate(-${player.hand.length*(player.hand.length - i)}deg)`;
+    document.getElementById(`player-card-${i}`).style.left = `${15 + 8 * i}%`;
+    document.getElementById(`player-card-${i}`).style.transform = `rotate(-${
+      player.hand.length * (player.hand.length - i)
+    }deg)`;
   }
 
   // splithands length will need container to display split hands
   if (player.splitHands.length > 0) {
-    const splitHandsContainer = document.getElementById('split-hands-container');
-    splitHandsContainer.innerHTML = '';
-    splitHandsContainer.style.height = '90px';
+    const splitHandsContainer = document.getElementById(
+      "split-hands-container"
+    );
+    splitHandsContainer.innerHTML = "";
+    splitHandsContainer.style.height = "90px";
 
     positionIterator = 1;
-    player.splitHands.forEach(card => {
-        const cardDiv = document.createElement('div');
-        cardDiv.className = 'card-image';
-        cardDiv.style = `
-        background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
+    player.splitHands.forEach((card) => {
+      const cardDiv = document.createElement("div");
+      cardDiv.className = "card-image";
+      cardDiv.style = `
+        background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${
+        card[1]
+      }.svg') no-repeat center / cover;
         width: 60px;
         height: 90px;
         position: absolute; 
-        left: ${15+(8*positionIterator)}%;
-        transform: rotate(-${5*(player.splitHands.length - positionIterator)}deg);
+        left: ${15 + 8 * positionIterator}%;
+        transform: rotate(-${
+          5 * (player.splitHands.length - positionIterator)
+        }deg);
         `;
-        splitHandsContainer.appendChild(cardDiv);
-        positionIterator += 1
-      });
+      splitHandsContainer.appendChild(cardDiv);
+      positionIterator += 1;
+    });
 
-    document.getElementById('player-hand-initial').style.display = 'inline-block';
-    document.getElementById('player-hand-second').style.display = 'inline-block'
+    document.getElementById("player-hand-initial").style.display =
+      "inline-block";
+    document.getElementById("player-hand-second").style.display =
+      "inline-block";
     // document.getElementById('reveal-score').style.display = 'block';
 
-    document.getElementById("split-hand-value").innerHTML = player.splitTotal.toString();
+    document.getElementById("split-hand-value").innerHTML =
+      player.splitTotal.toString();
     document.getElementById("split-hand-value").style.display = "block";
   }
 }
@@ -246,65 +264,65 @@ function splitCards() {
 function determineWinner() {
   let result;
   if (player.total > 21) {
-    result = 'BUST';
-    updateScore('dealer');
+    result = "BUST";
+    updateScore("dealer");
   } else if (dealer.total > 21 || player.total > dealer.total) {
-    result = 'WIN';
-    updateScore('player');
-  } else if (player.total <= dealer.total) {
-    result = 'LOSS';
-    updateScore('dealer');
+    result = "WIN";
+    updateScore("player");
   } else if (player.total === dealer.total) {
-    result = 'TIE';
+    result = "TIE";
     // updateScore('dealer');
+  } else if (player.total <= dealer.total) {
+    result = "LOSS";
+    updateScore("dealer");
   } else {
-    console.log('Something has gone wrong!'); //internal bug checking we should oped this out to a modal in the deployment.
+    console.log("Something has gone wrong!"); //internal bug checking we should oped this out to a modal in the deployment.
   }
 
   // Reveal dealer's hidden card once result has been assigned a value
-  document.getElementById('dealer-card-1').style.background = `url('assets/images/Card-images/SVG-cards/${dealer.hand[0][0]}_of_${dealer.hand[0][1]}.svg') no-repeat center / cover`;
+  document.getElementById(
+    "dealer-card-1"
+  ).style.background = `url('assets/images/Card-images/SVG-cards/${dealer.hand[0][0]}_of_${dealer.hand[0][1]}.svg') no-repeat center / cover`;
 
-  // Result card creation styles defined in style sheet atm 
+  // Result card creation styles defined in style sheet atm
   //  fixed cloneNode BUST bug
-  const resultCard = document.createElement('div');
-  resultCard.className = 'card';
+  const resultCard = document.createElement("div");
+  resultCard.className = "card";
   resultCard.textContent = result;
 
   if (result !== undefined) {
     const playerResultCard = resultCard.cloneNode(true);
     const dealerResultCard = resultCard.cloneNode(true);
 
-    if (result === 'WIN') {
-      playerResultCard.textContent = 'WIN';
-      if (dealer.total > 21) {
-        dealerResultCard.textContent = 'BUST';
-      } else {
-        dealerResultCard.textContent = 'LOSS';
-      }
-    } else if (result === 'LOSS') {
-      playerResultCard.textContent = 'LOSS';
-      dealerResultCard.textContent = 'WIN';
-    } else if (result === 'BUST') {
-      playerResultCard.textContent = 'BUST';
-      dealerResultCard.textContent = 'WIN';
-    }else if (result === 'TIE') {
-      playerResultCard.textContent = 'PUSH';
-      dealerResultCard.textContent = 'PUSH';
+    if (result === "WIN") {
+      playerResultCard.textContent = "WIN";
+      dealerResultCard.textContent = "LOSS";
+    } else if (result === "LOSS") {
+      playerResultCard.textContent = "LOSS";
+      dealerResultCard.textContent = "WIN";
+    } else if (result === "BUST") {
+      playerResultCard.textContent = "BUST";
+      dealerResultCard.textContent = "WIN";
+    } else if (result === "TIE") {
+      playerResultCard.textContent = "PUSH";
+      dealerResultCard.textContent = "PUSH";
     }
 
-
-    document.getElementById('player-cards').appendChild(playerResultCard);
-    document.getElementById('dealer-cards').appendChild(dealerResultCard);
+    document.getElementById("player-cards").appendChild(playerResultCard);
+    document.getElementById("dealer-cards").appendChild(dealerResultCard);
   } else {
-    document.getElementById('player-cards').appendChild(resultCard);
+    document.getElementById("player-cards").appendChild(resultCard);
 
     // update and reveal dealer card value
-    document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+    document.getElementById("dealer-cards-value").innerHTML =
+      dealer.total.toString();
     document.getElementById("dealer-cards-value").style.display = "block";
 
     // document.getElementById('dealer-cards').appendChild(resultCard);
 
-    document.getElementById('dealer-cards').appendChild(resultCard.cloneNode(true));
+    document
+      .getElementById("dealer-cards")
+      .appendChild(resultCard.cloneNode(true));
   }
 
   gameStarted = false;
@@ -314,23 +332,24 @@ function determineWinner() {
 // *                           Menu Buttons                                  *
 // ***************************************************************************
 document.addEventListener("DOMContentLoaded", function () {
-
-  document.getElementById('rules').addEventListener('click', () => {
-    alert('You hit the Rule Button');
+  document.getElementById("rules").addEventListener("click", () => {
+    alert("You hit the Rule Button");
     let myWindow = window.open("", "MsgWindow", "width=600,height=300");
-    myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+    myWindow.document.write(
+      "<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>"
+    );
   });
 
-
-  document.getElementById('ga').addEventListener('click', () => {
-    alert('You hit the GA Button');
+  document.getElementById("ga").addEventListener("click", () => {
+    alert("You hit the GA Button");
     window.open("https://www.gambleaware.org/");
   });
 });
 
 // Buttons for game play, hit, stand, deal, split
-document.getElementById('deal-button').addEventListener('click', () => {
+document.getElementById("deal-button").addEventListener("click", () => {
   if (!gameStarted) {
+    resetDisplayedCards(); // Reset displayed cards
     deck.resetDeck();
     dealer.hand = deck.selectCardsFromDeck(2);
     player.hand = deck.selectCardsFromDeck(2);
@@ -341,53 +360,54 @@ document.getElementById('deal-button').addEventListener('click', () => {
     playerTurn = true;
 
     // turn display of player card values to on
-    document.getElementById("player-cards-value").innerHTML = player.total.toString();
+    document.getElementById("player-cards-value").innerHTML =
+      player.total.toString();
     document.getElementById("player-cards-value").style.display = "block";
 
     // ensure dealer value is still hidden until player has finished his go
     document.getElementById("dealer-cards-value").style.display = "none";
-    
-  } else if (player.hand.length === 2 && playerTurn && player.total === 21) {
-    playerTurn = false;
+  } else if (gameStarted && playerTurn && player.hand.length === 2 && player.total === 21) {
+    alert("You Just Hit 21! Black Jack Baby! Stand or Hit to continue.");
     updateUI();
     determineWinner();
-    }
-
-
+  } else if (gameStarted && playerTurn && player.total < 21) { 
+    alert("You must finish the current game before starting a new one.");
+  } 
 });
 
-document.getElementById('hit-button').addEventListener('click', () => {
+document.getElementById("hit-button").addEventListener("click", () => {
   if (gameStarted && playerTurn) {
     player.addCard(deck.selectCardsFromDeck(1)[0]);
     //hide dealer card value again
     document.getElementById("dealer-cards-value").style.display = "none";
     // update player cards value
-    document.getElementById("player-cards-value").innerHTML = player.total.toString();
+    document.getElementById("player-cards-value").innerHTML =
+      player.total.toString();
 
     updateUI();
     if (player.hand.length === 2 && playerTurn && player.total === 21) {
       playerTurn = false;
       updateUI();
       determineWinner();
-      } else if (player.total > 21) {
+    } else if (player.total > 21) {
       determineWinner();
     }
   }
 });
 // Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
-document.getElementById('stand-button').addEventListener('click', () => {
+document.getElementById("stand-button").addEventListener("click", () => {
   if (gameStarted && playerTurn) {
     playerTurn = false;
 
-
-    while (dealer.total < 17 || dealer.total < player.total) { // Dealer hits until total is 17 or more
+    while (dealer.total < 17 || dealer.total < player.total) {
+      // Dealer hits until total is 17 or more
       dealer.addCard(deck.selectCardsFromDeck(1)[0]);
     }
 
     // update and reveal dealer card value
-    document.getElementById("dealer-cards-value").innerHTML = dealer.total.toString();
+    document.getElementById("dealer-cards-value").innerHTML =
+      dealer.total.toString();
     document.getElementById("dealer-cards-value").style.display = "block";
-    
 
     updateUI();
     determineWinner();
@@ -396,18 +416,35 @@ document.getElementById('stand-button').addEventListener('click', () => {
 
 // split button functionality
 
-document.getElementById('split-button').addEventListener('click', () => {
-      if (gameStarted && playerTurn && player.hand.length === 2 && player.hand[0][0] === player.hand[1][0]) {
-        splitCards(); // split cards if they are the same
-        updateUI(); // update UI to show split cards
-      }});
+document.getElementById("split-button").addEventListener("click", () => {
+  if (
+    gameStarted &&
+    playerTurn &&
+    player.hand.length === 2 &&
+    player.hand[0][0] === player.hand[1][0]
+  ) {
+    splitCards(); // split cards if they are the same
+    updateUI(); // update UI to show split cards
+  }
+});
 
 if (playerTurn && player.total === 21) {
   playerTurn = false;
-  console.log('we hit the if statement');
+  console.log("we hit the if statement");
   updateUI();
   determineWinner();
-  }
+}
+function resetDisplayedCards() {
+  player.splitHands = [];
+  player.splitTotal = 0;
+  document.getElementById("player-hand-second").style.display =
+  "none";
+  document.getElementById("split-hand-value").style.display = "none";
+
+}
 
 
-    updateUI();
+
+
+
+updateUI();
