@@ -321,7 +321,14 @@ function updateUI() {
       document.getElementById("player-hand-initial").style.display = 'none';
     }
   }
-}
+
+  // Reveal play second hand button
+  if (player.hand.length === 2 && player.splitHands.length !== 0) {
+    document.getElementById('play-second-hand').style.display = "inline-block";
+  } else {
+    document.getElementById('play-second-hand').style.display = "none"
+  }
+} 
 
 // --------------------------------------------function to split cards if they are the same
 function splitCards() {
@@ -503,6 +510,23 @@ if (playerTurn && player.total === 21) {
   updateUI();
   determineWinner();
 }
+
+// play second hand button functionality
+
+/*document.getElementById('play-second-hand').addEventListener('click', () => {
+  if (!gameStarted && !playerTurn && player.splitHands.length !== 0) {
+    document.getElementById('play-second-hand').style.display = "none"
+    
+    splitCards(); // split cards if they are the same
+    updateUI(); // update UI to show split cards
+  }});*/
+
+/*if (playerTurn && player.total === 21) {
+playerTurn = false;
+console.log("we hit the if statement");
+updateUI();
+determineWinner();
+}*/
 function resetDisplayedCards() {
   player.splitHands = [];
   player.splitTotal = 0;
