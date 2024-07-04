@@ -194,14 +194,14 @@ body{
 /* Beginning of styling for Rules Page Overlay and Gamble Aware */
 /*                       Menu Options                           */
 /*                                                              */
-#openOverlayBtn,
+/*#openOverlayBtn,
 #ga {
   margin: 7px;
   padding: 7px;
   width: auto;
   background-color: white;
   color: #388e3c;
-}
+}*/
 
 
 #openOverlayBtn:hover {
