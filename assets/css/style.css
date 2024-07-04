@@ -177,6 +177,7 @@ body{
 
 .overlay {
   display: none;
+  animation: appear 2s;
   position: fixed;
   top: 0;
   left: 0;
@@ -185,11 +186,21 @@ body{
   background-image: url(/assets/images/help/background-red.png);
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 0.75;
+  opacity: 0.8;
   color: white;
   text-align: center;
   z-index: 99;
+
   /* padding: 20px; */
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
 }
 
 .overlay-content {
