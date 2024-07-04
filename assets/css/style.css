@@ -21,7 +21,7 @@ body{
 #blackjack-table {
   background: url('../images/blackjack-tabletop.png') no-repeat center;
   background-size: 300%;
-  width: 100 vw;
+  width: 100vw;
   text-align: center;
   height: 500px; 
 }
@@ -192,7 +192,7 @@ body{
 
 /*                                                              */
 /* Beginning of styling for Rules Page Overlay and Gamble Aware */
-/*                       Menu Options                           */             */
+/*                       Menu Options                           */
 /*                                                              */
 #openOverlayBtn,
 #ga {

@@ -27,17 +27,17 @@ let closeBtn = document.getElementById("closeOverlayBtn");
 // When the user clicks the button, open the overlay 
 openBtn.onclick = function () {
   overlay.style.display = "block";
-}
+};
 // When the user clicks on <span> (x), close the overlay
 closeBtn.onclick = function () {
   overlay.style.display = "none";
-}
+};
 // When the user clicks anywhere outside of the overlay, close it
 window.onclick = function (event) {
   if (event.target == overlay) {
     overlay.style.display = "none";
   }
-}
+};
 //
 // End of code for handling Game Rules overlay
 //
@@ -196,9 +196,9 @@ function checkForTen() {
       }
       
       if (cardOne === 10 && cardTwo === 10) {
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     }
   }
@@ -524,4 +524,4 @@ function resetDisplayedCards() {
 }
 
 
-    updateUI()
+updateUI();
