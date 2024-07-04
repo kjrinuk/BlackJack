@@ -242,6 +242,7 @@ function updateUI() {
     player.splitHands.forEach(card => {
         const cardDiv = document.createElement('div');
         cardDiv.className = 'card-image';
+        console.log(card);
         cardDiv.style = `
         background: url('assets/images/Card-images/SVG-cards/${card[0]}_of_${card[1]}.svg') no-repeat center / cover;
         width: 60px;
@@ -273,10 +274,9 @@ function updateUI() {
 
 // --------------------------------------------function to split cards if they are the same
 function splitCards() {
-  if (player.hand.length === 2 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
+  if (player.hand.length === 2 && player.splitHands.length === 0 && player.hand[0][0] === player.hand[1][0] || checkForTen()) {
     player.splitHands.push(player.hand[1]);
     player.splitTotal = totalValue(player.splitHands);
-    console.log(player.hand);
     player.hand.pop();
     updateUI();
   }
@@ -419,19 +419,19 @@ document.getElementById('hit-button').addEventListener('click', () => {
     document.getElementById("dealer-cards-value").style.display = "block";
   }
 
-  if (!playerTurn && player.splitHands.length === 1) {
-    player.splitHands.push(selectCardsFromDeck(1))
+  /*if (document.getElementsByClassName('card').length === 2 && player.splitHands.length === 1) {
+    player.splitHands.push(deck.selectCardsFromDeck(1)[0])
+    // hide result cards
+    document.getElementsByClassName("card")[0].style.display = "none";
     //hide dealer card value again
     document.getElementById("dealer-cards-value").style.display = "none";
-    // hide result cards
-    document.getElementsByClassName("card").style.display = "none";
     dealer.hand = [];
     if (!dealer.hand.length === 2) {
       dealer.hand.push(selectCardsFromDeck(2));
     } else {
       dealer.hand.push(selectCardsFromDeck(1));
     }
-  }
+  }*/
 
 });
 // Game Mechanics Dealer hit until dealer.total < 17 or dealer.total more than or equal to player.total
